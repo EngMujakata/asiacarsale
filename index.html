@@ -3,8 +3,7 @@
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>AsiaCarSale – Commercial & Passenger Vehicle Exports from Thailand</title>
-    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800;900&display=swap" rel="stylesheet" />
+    <title>AsiaCarSale | Commercial & Passenger Vehicle Exports</title>
     <style>
       *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
 
@@ -21,16 +20,16 @@
       }
 
       body {
-        font-family: 'Inter', sans-serif;
+        font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
         background: var(--surface);
         color: var(--charcoal);
         min-height: 100vh;
         display: flex;
         flex-direction: column;
         line-height: 1.5;
+        -webkit-font-smoothing: antialiased;
       }
 
-      /* Global Header Structure */
       header {
         background: var(--navy);
         color: #FFFFFF;
@@ -39,13 +38,13 @@
       .header-container {
         max-width: 1280px;
         margin: 0 auto;
-        padding: 16px 32px;
+        padding: 12px 16px;
         display: flex;
         align-items: center;
         justify-content: space-between;
       }
       .brand-title {
-        font-size: 1.35rem;
+        font-size: 1.15rem;
         font-weight: 800;
         letter-spacing: -0.5px;
         color: #FFFFFF;
@@ -54,10 +53,9 @@
       }
       .brand-title span { color: var(--crimson); }
       .header-meta {
-        font-size: 0.78rem;
+        font-size: 0.7rem;
         color: #ADB5BD;
-        font-weight: 500;
-        letter-spacing: 0.2px;
+        display: none;
       }
 
       .nav-bar {
@@ -67,46 +65,45 @@
       .nav-content {
         max-width: 1280px;
         margin: 0 auto;
-        padding: 0 32px;
+        padding: 0 16px;
         display: flex;
         justify-content: space-between;
         align-items: center;
+        min-height: 44px;
       }
       .nav-links {
         display: flex;
         list-style: none;
+        overflow-x: auto;
       }
       .nav-links a {
         display: block;
-        padding: 12px 20px;
+        padding: 10px 12px;
         color: #CED4DA;
         text-decoration: none;
-        font-size: 0.8rem;
+        font-size: 0.75rem;
         font-weight: 600;
         text-transform: uppercase;
-        letter-spacing: 0.5px;
-        transition: color 0.15s ease;
+        white-space: nowrap;
       }
-      .nav-links a:hover { color: #FFFFFF; background: rgba(255,255,255,0.04); }
+      .nav-links a:hover { color: #FFFFFF; }
       .admin-auth-trigger {
         background: transparent;
         color: #CED4DA;
         border: 1px solid rgba(255,255,255,0.2);
-        padding: 6px 14px;
+        padding: 6px 10px;
         border-radius: 3px;
-        font-size: 0.75rem;
+        font-size: 0.68rem;
         font-weight: 600;
         text-transform: uppercase;
-        letter-spacing: 0.5px;
         cursor: pointer;
-        transition: all 0.15s ease;
+        white-space: nowrap;
       }
       .admin-auth-trigger:hover { background: var(--crimson); border-color: var(--crimson); color: #FFFFFF; }
 
-      /* Search Control Section */
       .search-wrapper {
         background: var(--navy);
-        padding: 32px;
+        padding: 16px;
       }
       .search-panel {
         max-width: 1280px;
@@ -114,123 +111,88 @@
         background: var(--surface-card);
         border-radius: 4px;
         box-shadow: 0 4px 12px rgba(0,0,0,0.15);
-        padding: 24px;
+        padding: 16px;
         border-top: 3px solid var(--crimson);
       }
       .panel-heading {
-        font-size: 0.85rem;
+        font-size: 0.78rem;
         font-weight: 800;
         text-transform: uppercase;
-        letter-spacing: 0.8px;
         color: var(--navy);
-        margin-bottom: 16px;
-        padding-bottom: 8px;
+        margin-bottom: 12px;
+        padding-bottom: 6px;
         border-bottom: 1px solid var(--border-color);
       }
       .search-grid {
         display: grid;
-        grid-template-columns: repeat(auto-fit, minmax(170px, 1fr)) 130px;
-        gap: 12px;
-        align-items: end;
+        grid-template-columns: 1fr;
+        gap: 10px;
       }
       .input-group {
         display: flex;
         flex-direction: column;
-        gap: 4px;
+        gap: 3px;
       }
       .input-group label {
-        font-size: 0.68rem;
+        font-size: 0.65rem;
         font-weight: 700;
         color: var(--text-muted);
         text-transform: uppercase;
-        letter-spacing: 0.4px;
       }
       .input-group select, .input-group input {
-        padding: 9px 12px;
+        padding: 10px;
         border: 1px solid var(--border-color);
         border-radius: 3px;
-        font-size: 0.82rem;
-        font-family: 'Inter', sans-serif;
+        font-size: 0.85rem;
         background: #FFFFFF;
         color: var(--charcoal);
+        width: 100%;
       }
       .search-action-btn {
         background: var(--crimson);
         color: #FFFFFF;
         border: none;
         border-radius: 3px;
-        padding: 10px;
-        font-size: 0.8rem;
+        padding: 12px;
+        font-size: 0.78rem;
         font-weight: 700;
         text-transform: uppercase;
-        letter-spacing: 0.5px;
         cursor: pointer;
-        height: 38px;
-        transition: background 0.15s ease;
+        width: 100%;
+        margin-top: 4px;
       }
-      .search-action-btn:hover { background: var(--crimson-hover); }
 
-      /* Main Inventory Workspace */
       .workspace {
         max-width: 1280px;
-        margin: 32px auto;
-        padding: 0 32px;
-        display: grid;
-        grid-template-columns: 240px 1fr;
-        gap: 24px;
+        margin: 16px auto;
+        padding: 0 16px;
+        display: flex;
+        flex-direction: column;
+        gap: 16px;
         width: 100%;
       }
-      .filter-sidebar {
-        background: var(--surface-card);
-        border: 1px solid var(--border-color);
-        border-radius: 4px;
-        padding: 16px;
-        height: fit-content;
-      }
-      .filter-sidebar h3 {
-        font-size: 0.8rem;
-        font-weight: 800;
-        text-transform: uppercase;
-        letter-spacing: 0.5px;
-        color: var(--navy);
-        margin-bottom: 12px;
-        padding-bottom: 6px;
-        border-bottom: 1px solid var(--border-color);
-      }
-      .sidebar-list { list-style: none; }
-      .sidebar-item {
-        padding: 8px 10px;
-        font-size: 0.8rem;
-        font-weight: 600;
-        color: var(--charcoal);
-        border-radius: 3px;
-        cursor: pointer;
-        margin-bottom: 2px;
-        transition: background 0.1s;
-      }
-      .sidebar-item:hover, .sidebar-item.active { background: #E9ECEF; color: var(--crimson); }
+      .filter-sidebar { display: none; }
 
-      .catalog-container { display: flex; flex-direction: column; gap: 16px; }
+      .catalog-container { display: flex; flex-direction: column; gap: 12px; }
       .catalog-toolbar {
         background: var(--surface-card);
         border: 1px solid var(--border-color);
         border-radius: 4px;
-        padding: 12px 16px;
+        padding: 10px 14px;
         display: flex;
         justify-content: space-between;
         align-items: center;
       }
       .catalog-toolbar h2 {
-        font-size: 0.9rem;
+        font-size: 0.82rem;
         font-weight: 800;
         text-transform: uppercase;
-        letter-spacing: 0.5px;
         color: var(--navy);
       }
       .inventory-grid {
         display: grid;
-        grid-template-columns: repeat(auto-fill, minmax(240px, 1fr));
-        gap: 16px;
+        grid-template-columns: 1fr;
+        gap: 12px;
       }
       .inventory-card {
         background: var(--surface-card);
@@ -240,12 +202,10 @@
         cursor: pointer;
         display: flex;
         flex-direction: column;
-        transition: border-color 0.15s ease, box-shadow 0.15s ease;
       }
-      .inventory-card:hover { border-color: var(--navy); box-shadow: 0 4px 12px rgba(0,0,0,0.06); }
       .card-media {
         width: 100%;
-        height: 160px;
+        height: 180px;
         background: #E9ECEF;
         position: relative;
       }
@@ -259,18 +219,15 @@
         font-size: 0.6rem;
         font-weight: 700;
         text-transform: uppercase;
-        letter-spacing: 0.5px;
         padding: 2px 6px;
         border-radius: 2px;
       }
       .card-content { padding: 12px; display: flex; flex-direction: column; flex: 1; }
       .card-title {
-        font-size: 0.82rem;
+        font-size: 0.85rem;
         font-weight: 700;
         color: var(--charcoal);
         margin-bottom: 4px;
-        height: 2.6em;
-        overflow: hidden;
       }
       .card-specs { font-size: 0.72rem; color: var(--text-muted); margin-bottom: 8px; }
       .card-pricing {
@@ -282,149 +239,140 @@
         padding-top: 8px;
       }
       .card-price { font-size: 0.95rem; font-weight: 800; color: var(--crimson); }
-      .card-meta-text { font-size: 0.72rem; font-weight: 600; color: var(--text-muted); }
+      .card-meta-text { font-size: 0.7rem; font-weight: 600; color: var(--text-muted); }
       .empty-notice {
-        grid-column: 1 / -1;
         background: var(--surface-card);
         border: 1px solid var(--border-color);
-        padding: 40px;
+        padding: 30px 16px;
         text-align: center;
-        font-size: 0.82rem;
+        font-size: 0.78rem;
         color: var(--text-muted);
         text-transform: uppercase;
-        letter-spacing: 0.5px;
       }
 
-      /* Editorial Information Layout */
       .editorial-section {
         max-width: 1280px;
-        margin: 0 auto 40px;
-        padding: 0 32px;
+        margin: 0 auto 24px;
+        padding: 0 16px;
         width: 100%;
-        display: grid;
-        grid-template-columns: 2fr 1fr;
-        gap: 24px;
+        display: flex;
+        flex-direction: column;
+        gap: 16px;
       }
       .editorial-box {
         background: var(--surface-card);
         border: 1px solid var(--border-color);
         border-radius: 4px;
-        padding: 24px;
+        padding: 16px;
       }
       .editorial-box h3 {
-        font-size: 0.85rem;
+        font-size: 0.8rem;
         font-weight: 800;
         text-transform: uppercase;
-        letter-spacing: 0.5px;
         color: var(--navy);
-        margin-bottom: 12px;
-        padding-bottom: 8px;
+        margin-bottom: 10px;
+        padding-bottom: 6px;
         border-bottom: 2px solid var(--surface);
       }
       .editorial-box p, .editorial-box li {
-        font-size: 0.78rem;
+        font-size: 0.75rem;
         color: #495057;
-        line-height: 1.6;
-        margin-bottom: 8px;
+        line-height: 1.5;
+        margin-bottom: 6px;
       }
-      .editorial-box ol { padding-left: 16px; }
+      .editorial-box ol { padding-left: 14px; }
       .process-flow {
         background: #F1F3F5;
         border: 1px solid var(--border-color);
         color: var(--navy);
-        padding: 12px;
+        padding: 10px;
         border-radius: 3px;
-        font-size: 0.72rem;
+        font-size: 0.65rem;
         font-weight: 700;
         text-align: center;
-        margin-top: 12px;
-        letter-spacing: 0.3px;
+        margin-top: 10px;
         text-transform: uppercase;
+        line-height: 1.4;
       }
 
-      /* Footer Design */
       footer {
         background: var(--navy-dark);
         color: #FFFFFF;
         margin-top: auto;
-        padding: 32px;
+        padding: 24px 16px;
         text-align: center;
         border-top: 3px solid var(--crimson);
       }
-      footer p { font-size: 0.75rem; color: #ADB5BD; margin-bottom: 4px; }
+      footer p { font-size: 0.7rem; color: #ADB5BD; margin-bottom: 4px; }
 
-      /* Modals & Authentication Systems */
       .modal-backdrop {
         position: fixed;
         inset: 0;
-        background: rgba(11, 25, 44, 0.75);
+        background: rgba(11, 25, 44, 0.8);
         z-index: 1000;
         display: none;
         align-items: center;
         justify-content: center;
-        padding: 20px;
+        padding: 12px;
       }
       .modal-backdrop.open { display: flex; }
       
       .modal-frame {
         background: var(--surface-card);
         width: 100%;
-        max-width: 600px;
-        max-height: 90vh;
+        max-width: 500px;
+        max-height: 92vh;
         overflow-y: auto;
         border-radius: 4px;
-        box-shadow: 0 15px 35px rgba(0,0,0,0.3);
+        box-shadow: 0 10px 25px rgba(0,0,0,0.3);
         border-top: 4px solid var(--navy);
       }
       .modal-header-bar {
         background: var(--surface);
-        padding: 16px 20px;
+        padding: 12px 16px;
         display: flex;
         justify-content: space-between;
         align-items: center;
         border-bottom: 1px solid var(--border-color);
       }
       .modal-header-bar h3 {
-        font-size: 0.85rem;
+        font-size: 0.78rem;
         font-weight: 800;
         text-transform: uppercase;
-        letter-spacing: 0.8px;
         color: var(--navy);
       }
       .modal-close-btn {
         background: transparent;
         border: none;
-        font-size: 0.9rem;
+        font-size: 1rem;
         font-weight: 700;
         cursor: pointer;
         color: var(--text-muted);
+        padding: 4px 8px;
       }
-      .modal-body-content { padding: 24px; }
+      .modal-body-content { padding: 16px; }
 
-      /* Form Structures */
-      .form-grid-dual { display: grid; grid-template-columns: 1fr 1fr; gap: 12px; margin-bottom: 12px; }
-      .form-field-group { display: flex; flex-direction: column; gap: 4px; margin-bottom: 12px; }
-      .form-field-group.span-full { grid-column: span 2; }
+      .form-grid-dual { display: flex; flex-direction: column; gap: 10px; margin-bottom: 10px; }
+      .form-field-group { display: flex; flex-direction: column; gap: 3px; margin-bottom: 10px; }
+      .form-field-group.span-full { grid-column: auto; }
       .form-field-group label {
-        font-size: 0.68rem;
+        font-size: 0.65rem;
         font-weight: 700;
         color: var(--text-muted);
         text-transform: uppercase;
-        letter-spacing: 0.4px;
       }
       .form-field-group input, .form-field-group select {
-        padding: 9px 12px;
+        padding: 10px;
         border: 1px solid var(--border-color);
         border-radius: 3px;
-        font-size: 0.82rem;
-        font-family: 'Inter', sans-serif;
+        font-size: 0.85rem;
       }
 
       .image-upload-zone {
         display: grid;
-        grid-template-columns: repeat(4, 1fr);
-        gap: 8px;
-        margin-bottom: 16px;
+        grid-template-columns: repeat(3, 1fr);
+        gap: 6px;
+        margin-bottom: 12px;
       }
       .img-preview-box {
         position: relative;
@@ -437,13 +385,13 @@
       .img-preview-box img { width: 100%; height: 100%; object-fit: cover; }
       .img-remove-btn {
         position: absolute;
-        top: 3px;
-        right: 3px;
+        top: 2px;
+        right: 2px;
         background: rgba(0,0,0,0.7);
         color: #FFFFFF;
         border: none;
-        width: 18px;
-        height: 18px;
+        width: 20px;
+        height: 20px;
         border-radius: 50%;
         font-size: 0.6rem;
         cursor: pointer;
@@ -459,7 +407,7 @@
         display: flex;
         align-items: center;
         justify-content: center;
-        font-size: 1.2rem;
+        font-size: 1.1rem;
         font-weight: 700;
         color: var(--text-muted);
         cursor: pointer;
@@ -471,13 +419,11 @@
         color: #FFFFFF;
         border: none;
         border-radius: 3px;
-        padding: 11px;
-        font-size: 0.8rem;
+        padding: 12px;
+        font-size: 0.78rem;
         font-weight: 700;
         text-transform: uppercase;
-        letter-spacing: 0.5px;
         cursor: pointer;
-        transition: background 0.15s ease;
       }
       .btn-primary:hover { background: var(--crimson-hover); }
 
@@ -487,89 +433,82 @@
         color: var(--crimson);
         border: 1px solid var(--crimson);
         border-radius: 3px;
-        padding: 9px;
-        font-size: 0.78rem;
+        padding: 10px;
+        font-size: 0.75rem;
         font-weight: 700;
         text-transform: uppercase;
-        letter-spacing: 0.5px;
         cursor: pointer;
         margin-top: 8px;
       }
 
-      /* Admin Record Table */
       .admin-table {
         width: 100%;
         border-collapse: collapse;
-        margin-top: 8px;
+        margin-top: 4px;
       }
       .admin-table th, .admin-table td {
-        padding: 10px;
+        padding: 8px 6px;
         text-align: left;
         border-bottom: 1px solid var(--border-color);
-        font-size: 0.78rem;
+        font-size: 0.72rem;
       }
       .admin-table th {
         background: var(--surface);
         color: var(--navy);
         font-weight: 700;
         text-transform: uppercase;
-        letter-spacing: 0.4px;
       }
-      .admin-table img { width: 45px; height: 32px; object-fit: cover; border-radius: 2px; }
+      .admin-table img { width: 36px; height: 26px; object-fit: cover; border-radius: 2px; }
       .table-action-btn {
         background: var(--navy);
         color: #FFFFFF;
         border: none;
-        padding: 5px 10px;
+        padding: 4px 8px;
         border-radius: 2px;
-        font-size: 0.7rem;
+        font-size: 0.65rem;
         font-weight: 600;
         text-transform: uppercase;
-        cursor: pointer;
       }
 
-      /* Professional Authentication Modal Box */
       .auth-modal-frame {
         background: var(--surface-card);
         width: 100%;
-        max-width: 400px;
+        max-width: 360px;
         border-radius: 4px;
-        box-shadow: 0 15px 35px rgba(0,0,0,0.3);
+        box-shadow: 0 10px 25px rgba(0,0,0,0.3);
         border-top: 4px solid var(--navy);
         overflow: hidden;
       }
       .auth-header {
         background: var(--surface);
-        padding: 16px 20px;
+        padding: 12px 16px;
         border-bottom: 1px solid var(--border-color);
         display: flex;
         justify-content: space-between;
         align-items: center;
       }
       .auth-header h3 {
-        font-size: 0.8rem;
+        font-size: 0.75rem;
         font-weight: 800;
         text-transform: uppercase;
-        letter-spacing: 0.8px;
         color: var(--navy);
       }
-      .auth-body { padding: 24px; }
+      .auth-body { padding: 16px; }
       .auth-desc {
-        font-size: 0.75rem;
+        font-size: 0.72rem;
         color: var(--text-muted);
-        margin-bottom: 16px;
-        line-height: 1.5;
+        margin-bottom: 12px;
+        line-height: 1.4;
       }
 
-      /* Detail View Grid */
       .detail-layout-grid {
-        display: grid;
-        grid-template-columns: 1fr 1fr;
-        gap: 20px;
+        display: flex;
+        flex-direction: column;
+        gap: 16px;
       }
       .detail-media-preview {
         width: 100%;
-        height: 260px;
+        height: 200px;
         background: var(--surface);
         border-radius: 3px;
         overflow: hidden;
@@ -579,38 +518,62 @@
       .specs-grid-box {
         display: grid;
         grid-template-columns: 1fr 1fr;
-        gap: 8px;
-        margin-top: 12px;
+        gap: 6px;
+        margin-top: 10px;
         background: var(--surface);
-        padding: 12px;
+        padding: 10px;
         border-radius: 3px;
         border: 1px solid var(--border-color);
       }
       .spec-cell span {
         display: block;
-        font-size: 0.62rem;
+        font-size: 0.6rem;
         font-weight: 700;
         color: var(--text-muted);
         text-transform: uppercase;
-        letter-spacing: 0.4px;
       }
       .spec-cell strong {
-        font-size: 0.78rem;
+        font-size: 0.72rem;
         color: var(--charcoal);
         font-weight: 700;
       }
 
-      @media(max-width: 768px) {
-        .workspace { grid-template-columns: 1fr; }
-        .filter-sidebar { display: none; }
-        .editorial-section { grid-template-columns: 1fr; }
-        .detail-layout-grid { grid-template-columns: 1fr; }
+      @media(min-width: 768px) {
+        .header-container { padding: 16px 32px; }
+        .brand-title { font-size: 1.35rem; }
+        .header-meta { display: block; font-size: 0.78rem; }
+        .nav-content { padding: 0 32px; min-height: auto; }
+        .nav-links a { padding: 12px 20px; font-size: 0.8rem; }
+        .admin-auth-trigger { padding: 6px 14px; font-size: 0.75rem; }
+        .search-wrapper { padding: 32px; }
+        .search-panel { padding: 24px; }
+        .search-grid { grid-template-columns: repeat(auto-fit, minmax(170px, 1fr)) 130px; align-items: end; gap: 12px; }
+        .search-action-btn { height: 38px; margin-top: 0; }
+        .workspace { margin: 32px auto; padding: 0 32px; display: grid; grid-template-columns: 240px 1fr; gap: 24px; }
+        .filter-sidebar { display: block; background: var(--surface-card); border: 1px solid var(--border-color); border-radius: 4px; padding: 16px; height: fit-content; }
+        .filter-sidebar h3 { font-size: 0.8rem; font-weight: 800; text-transform: uppercase; color: var(--navy); margin-bottom: 12px; padding-bottom: 6px; border-bottom: 1px solid var(--border-color); }
+        .sidebar-list { list-style: none; }
+        .sidebar-item { padding: 8px 10px; font-size: 0.8rem; font-weight: 600; color: var(--charcoal); border-radius: 3px; cursor: pointer; margin-bottom: 2px; }
+        .sidebar-item:hover, .sidebar-item.active { background: #E9ECEF; color: var(--crimson); }
+        .inventory-grid { grid-template-columns: repeat(auto-fill, minmax(240px, 1fr)); gap: 16px; }
+        .editorial-section { margin: 0 auto 40px; padding: 0 32px; display: grid; grid-template-columns: 2fr 1fr; gap: 24px; }
+        .editorial-box { padding: 24px; }
+        .editorial-box h3 { font-size: 0.85rem; }
+        .editorial-box p, .editorial-box li { font-size: 0.78rem; }
+        .process-flow { font-size: 0.72rem; padding: 12px; }
+        footer { padding: 32px; }
+        footer p { font-size: 0.75rem; }
+        .modal-frame { max-width: 600px; }
+        .form-grid-dual { display: grid; grid-template-columns: 1fr 1fr; gap: 12px; margin-bottom: 12px; }
+        .form-field-group.span-full { grid-column: span 2; }
+        .image-upload-zone { grid-template-columns: repeat(4, 1fr); gap: 8px; }
+        .detail-layout-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 20px; }
+        .detail-media-preview { height: 260px; }
       }
     </style>
   </head>
   <body>
 
-    <!-- SITE HEADER -->
     <header>
       <div class="header-container">
         <a href="#" class="brand-title">Asia<span>CarSale</span></a>
@@ -629,7 +592,6 @@
       </div>
     </header>
 
-    <!-- ADVANCED SEARCH PANEL -->
     <div class="search-wrapper">
       <div class="search-panel">
         <div class="panel-heading">Vehicle Inventory Search Parameters</div>
@@ -676,7 +638,6 @@
       </div>
     </div>
 
-    <!-- MAIN WORKSPACE -->
     <div class="workspace">
       <aside class="filter-sidebar">
         <h3>Brand Directory</h3>
@@ -693,15 +654,12 @@
       <main class="catalog-container">
         <div class="catalog-toolbar">
           <h2 id="catalogHeaderTitle">Verified Stock Inventory</h2>
-          <span id="inventoryCountLabel" style="font-size: 0.75rem; font-weight: 700; color: var(--text-muted); text-transform: uppercase;">0 units recorded</span>
+          <span id="inventoryCountLabel" style="font-size: 0.7rem; font-weight: 700; color: var(--text-muted); text-transform: uppercase;">0 units recorded</span>
         </div>
-        <div class="inventory-grid" id="inventoryGridContainer">
-          <!-- Injected via JavaScript runtime -->
-        </div>
+        <div class="inventory-grid" id="inventoryGridContainer"></div>
       </main>
     </div>
 
-    <!-- EDITORIAL & OPERATIONAL WORKFLOW SECTION -->
     <div class="editorial-section" id="operationalWorkflow">
       <div class="editorial-box">
         <h3>Export Operations & Purchase Protocol</h3>
@@ -725,13 +683,11 @@
       </div>
     </div>
 
-    <!-- FOOTER -->
     <footer>
       <p>© 2026 AsiaCarSale. All rights reserved. International Vehicle Export Logistics.</p>
-      <p style="font-size: 0.68rem; color: #6C757D;">Authorized Dealer Management Framework Enabled</p>
+      <p style="font-size: 0.65rem; color: #6C757D;">Authorized Dealer Management Framework Enabled</p>
     </footer>
 
-    <!-- PROFESSIONAL PASSWORD AUTHENTICATION MODAL -->
     <div class="modal-backdrop" id="authModalBackdrop">
       <div class="auth-modal-frame">
         <div class="auth-header">
@@ -749,37 +705,33 @@
       </div>
     </div>
 
-    <!-- ADMIN MANAGEMENT PANEL OVERLAY -->
     <div class="modal-backdrop" id="adminPanelBackdrop">
-      <div class="modal-frame" style="max-width: 850px;">
+      <div class="modal-frame" style="max-width: 800px;">
         <div class="modal-header-bar">
           <h3>Enterprise Inventory Control Panel</h3>
           <button class="modal-close-btn" onclick="closeAdminPanel()">✕</button>
         </div>
         <div class="modal-body-content">
-          <button class="btn-primary" style="margin-bottom: 16px; width: auto; padding: 8px 16px;" onclick="openCarEditorModal()">+ Register New Vehicle Listing</button>
+          <button class="btn-primary" style="margin-bottom: 12px; width: auto; padding: 8px 14px;" onclick="openCarEditorModal()">+ Register New Vehicle Listing</button>
           <div style="overflow-x: auto;">
             <table class="admin-table">
               <thead>
                 <tr>
                   <th>Media</th>
-                  <th>Designation / Name</th>
+                  <th>Designation</th>
                   <th>Make / Model</th>
                   <th>Valuation</th>
                   <th>Year</th>
                   <th>Action</th>
                 </tr>
               </thead>
-              <tbody id="adminTableRowsContainer">
-                <!-- Rendered dynamically -->
-              </tbody>
+              <tbody id="adminTableRowsContainer"></tbody>
             </table>
           </div>
         </div>
       </div>
     </div>
 
-    <!-- VEHICLE EDITOR MODAL -->
     <div class="modal-backdrop" id="carEditorBackdrop">
       <div class="modal-frame">
         <div class="modal-header-bar">
@@ -884,9 +836,8 @@
       </div>
     </div>
 
-    <!-- VEHICLE DETAIL INSPECTION MODAL -->
     <div class="modal-backdrop" id="detailModalBackdrop">
-      <div class="modal-frame" style="max-width: 780px;">
+      <div class="modal-frame" style="max-width: 700px;">
         <div class="modal-header-bar">
           <h3 id="detailHeaderTitleText">Specification Dossier</h3>
           <button class="modal-close-btn" onclick="closeDetailModal()">✕</button>
@@ -895,8 +846,8 @@
           <div class="detail-layout-grid">
             <div class="detail-media-preview" id="detailMediaWrap"></div>
             <div>
-              <h2 id="detailRecordName" style="font-size: 1.05rem; font-weight: 800; color: var(--navy); margin-bottom: 4px;"></h2>
-              <div id="detailRecordPrice" style="font-size: 1.25rem; font-weight: 900; color: var(--crimson); margin-bottom: 12px;"></div>
+              <h2 id="detailRecordName" style="font-size: 0.95rem; font-weight: 800; color: var(--navy); margin-bottom: 4px;"></h2>
+              <div id="detailRecordPrice" style="font-size: 1.1rem; font-weight: 900; color: var(--crimson); margin-bottom: 10px;"></div>
               <div class="specs-grid-box" id="detailSpecsGridBox"></div>
             </div>
           </div>
@@ -995,12 +946,12 @@
         countLabel.innerText = `${records.length} units recorded`;
 
         if (records.length === 0) {
-          gridContainer.innerHTML = `<div class="empty-notice">No matching vehicles identified within the active inventory parameters.</div>`;
+          gridContainer.innerHTML = `<div class="empty-notice">No matching vehicles identified within active parameters.</div>`;
           return;
         }
 
         records.forEach(item => {
-          const coverImage = item.images && item.images.length > 0 ? item.images[0] : 'https://via.placeholder.com/400x300?text=Registry+Image+Pending';
+          const coverImage = item.images && item.images.length > 0 ? item.images[0] : 'https://via.placeholder.com/400x300?text=Pending';
           const card = document.createElement('div');
           card.className = 'inventory-card';
           card.onclick = () => openDetailModal(item.id);
@@ -1022,7 +973,6 @@
         });
       }
 
-      /* Authentication & Administration Sequence */
       function triggerAdminAccess() {
         document.getElementById('adminPasswordInput').value = '';
         document.getElementById('authModalBackdrop').classList.add('open');
@@ -1034,9 +984,7 @@
       }
 
       function handleAuthKeypress(e) {
-        if (e.key === 'Enter') {
-          verifyAdminPassword();
-        }
+        if (e.key === 'Enter') verifyAdminPassword();
       }
 
       function verifyAdminPassword() {
@@ -1045,7 +993,7 @@
           closeAuthModal();
           openAdminPanel();
         } else {
-          alert("Authentication failed. Invalid authorization key provided.");
+          alert("Authentication failed. Invalid authorization key.");
         }
       }
 
@@ -1070,7 +1018,7 @@
           row.innerHTML = `
             <td><img src="${thumb}"></td>
             <td><strong>${item.name}</strong></td>
-            <td>${item.brand} / ${item.model}</td>
+            <td>${item.brand}</td>
             <td style="color:var(--crimson); font-weight:700;">$${Number(item.price).toLocaleString()}</td>
             <td>${item.year}</td>
             <td><button class="table-action-btn" onclick="openCarEditorModal('${item.id}')">Modify</button></td>
@@ -1088,7 +1036,7 @@
           const target = inventory.find(c => c.id === id);
           if (!target) return;
 
-          document.getElementById('editorModalTitle').innerText = 'Modify Vehicle Registry Record';
+          document.getElementById('editorModalTitle').innerText = 'Modify Vehicle Record';
           document.getElementById('recordId').value = target.id;
           document.getElementById('inputName').value = target.name;
           document.getElementById('inputBrand').value = target.brand;
@@ -1167,7 +1115,7 @@
           mileage: document.getElementById('inputMileage').value,
           engineSize: document.getElementById('inputEngine').value,
           driveType: document.getElementById('inputDrive').value,
-          images: workingImageList.length ? workingImageList : ['https://via.placeholder.com/400x300?text=Registry+Image+Pending']
+          images: workingImageList.length ? workingImageList : ['https://via.placeholder.com/400x300?text=Pending']
         };
 
         let inventory = fetchEnterpriseStock();
