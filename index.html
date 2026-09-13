@@ -34,17 +34,20 @@
         background: var(--navy);
         color: #FFFFFF;
         border-bottom: 2px solid var(--crimson);
+        position: sticky;
+        top: 0;
+        z-index: 100;
       }
       .header-container {
         max-width: 1280px;
         margin: 0 auto;
-        padding: 12px 16px;
+        padding: 10px 16px;
         display: flex;
         align-items: center;
         justify-content: space-between;
       }
       .brand-title {
-        font-size: 1.15rem;
+        font-size: 1.05rem;
         font-weight: 800;
         letter-spacing: -0.5px;
         color: #FFFFFF;
@@ -52,29 +55,47 @@
         text-transform: uppercase;
       }
       .brand-title span { color: var(--crimson); }
-      .header-meta {
-        font-size: 0.7rem;
-        color: #ADB5BD;
-        display: none;
+      
+      .header-actions {
+        display: flex;
+        align-items: center;
+        gap: 8px;
       }
+      .icon-btn {
+        background: transparent;
+        border: 1px solid rgba(255,255,255,0.2);
+        color: #FFFFFF;
+        width: 36px;
+        height: 36px;
+        border-radius: 3px;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        cursor: pointer;
+        font-size: 1rem;
+      }
+      .icon-btn:hover { background: var(--crimson); border-color: var(--crimson); }
 
       .nav-bar {
         background: var(--navy-dark);
         border-top: 1px solid rgba(255,255,255,0.08);
+        display: none;
+      }
+      .nav-bar.mobile-open {
+        display: block;
       }
       .nav-content {
         max-width: 1280px;
         margin: 0 auto;
-        padding: 0 16px;
+        padding: 8px 16px;
         display: flex;
-        justify-content: space-between;
-        align-items: center;
-        min-height: 44px;
+        flex-direction: column;
+        gap: 4px;
       }
       .nav-links {
         display: flex;
+        flex-direction: column;
         list-style: none;
-        overflow-x: auto;
       }
       .nav-links a {
         display: block;
@@ -84,26 +105,35 @@
         font-size: 0.75rem;
         font-weight: 600;
         text-transform: uppercase;
-        white-space: nowrap;
+        border-bottom: 1px solid rgba(255,255,255,0.04);
       }
-      .nav-links a:hover { color: #FFFFFF; }
+      .nav-links a:hover { color: #FFFFFF; background: rgba(255,255,255,0.03); }
       .admin-auth-trigger {
         background: transparent;
         color: #CED4DA;
         border: 1px solid rgba(255,255,255,0.2);
-        padding: 6px 10px;
+        padding: 10px 12px;
         border-radius: 3px;
-        font-size: 0.68rem;
+        font-size: 0.72rem;
         font-weight: 600;
         text-transform: uppercase;
         cursor: pointer;
-        white-space: nowrap;
+        text-align: left;
+        margin-top: 6px;
       }
       .admin-auth-trigger:hover { background: var(--crimson); border-color: var(--crimson); color: #FFFFFF; }
 
       .search-wrapper {
         background: var(--navy);
+        padding: 0 16px;
+        max-height: 0;
+        overflow: hidden;
+        transition: max-height 0.3s ease-out, padding 0.3s ease;
+      }
+      .search-wrapper.open {
+        max-height: 500px;
         padding: 16px;
+        border-bottom: 1px solid rgba(255,255,255,0.1);
       }
       .search-panel {
         max-width: 1280px;
@@ -539,16 +569,20 @@
       }
 
       @media(min-width: 768px) {
-        .header-container { padding: 16px 32px; }
-        .brand-title { font-size: 1.35rem; }
-        .header-meta { display: block; font-size: 0.78rem; }
-        .nav-content { padding: 0 32px; min-height: auto; }
-        .nav-links a { padding: 12px 20px; font-size: 0.8rem; }
-        .admin-auth-trigger { padding: 6px 14px; font-size: 0.75rem; }
-        .search-wrapper { padding: 32px; }
+        .header-container { padding: 14px 32px; }
+        .brand-title { font-size: 1.25rem; }
+        .icon-btn.menu-toggle { display: none; }
+        .nav-bar { display: block !important; background: var(--navy-dark); border-top: 1px solid rgba(255,255,255,0.08); }
+        .nav-content { flex-direction: row; justify-content: space-between; align-items: center; padding: 0 32px; min-height: 44px; }
+        .nav-links { flex-direction: row; }
+        .nav-links a { padding: 10px 14px; font-size: 0.78rem; border-bottom: none; }
+        .admin-auth-trigger { background: transparent; color: #CED4DA; border: 1px solid rgba(255,255,255,0.2); padding: 6px 10px; border-radius: 3px; font-size: 0.68rem; margin-top: 0; text-align: center; }
+        
+        .search-wrapper.open { padding: 24px 32px; }
         .search-panel { padding: 24px; }
         .search-grid { grid-template-columns: repeat(auto-fit, minmax(170px, 1fr)) 130px; align-items: end; gap: 12px; }
         .search-action-btn { height: 38px; margin-top: 0; }
+        
         .workspace { margin: 32px auto; padding: 0 32px; display: grid; grid-template-columns: 240px 1fr; gap: 24px; }
         .filter-sidebar { display: block; background: var(--surface-card); border: 1px solid var(--border-color); border-radius: 4px; padding: 16px; height: fit-content; }
         .filter-sidebar h3 { font-size: 0.8rem; font-weight: 800; text-transform: uppercase; color: var(--navy); margin-bottom: 12px; padding-bottom: 6px; border-bottom: 1px solid var(--border-color); }
@@ -577,22 +611,23 @@
     <header>
       <div class="header-container">
         <a href="#" class="brand-title">Asia<span>CarSale</span></a>
-        <div class="header-meta">
-          <span>Port Logistics: Bangkok Export Terminal to Durban & Beira</span>
+        <div class="header-actions">
+          <button class="icon-btn" onclick="toggleSearchPanel()" title="Toggle Filter Panel">🔍</button>
+          <button class="icon-btn menu-toggle" onclick="toggleMobileNav()" title="Toggle Navigation Menu">☰</button>
         </div>
       </div>
-      <div class="nav-bar">
+      <div class="nav-bar" id="mobileNavMenu">
         <div class="nav-content">
           <ul class="nav-links">
-            <li><a href="#">Inventory Directory</a></li>
-            <li><a href="#operationalWorkflow">Operational Workflow</a></li>
+            <li><a href="#" onclick="toggleMobileNav()">Inventory Directory</a></li>
+            <li><a href="#operationalWorkflow" onclick="toggleMobileNav()">Operational Workflow</a></li>
           </ul>
           <button class="admin-auth-trigger" onclick="triggerAdminAccess()">Restricted Management Access</button>
         </div>
       </div>
     </header>
 
-    <div class="search-wrapper">
+    <div class="search-wrapper" id="searchDropdownWrapper">
       <div class="search-panel">
         <div class="panel-heading">Vehicle Inventory Search Parameters</div>
         <div class="search-grid">
@@ -633,7 +668,7 @@
               <option value="Manual">Manual</option>
             </select>
           </div>
-          <button class="search-action-btn" onclick="executeSearchQuery()">Execute Search</button>
+          <button class="search-action-btn" onclick="executeSearchQuery(); toggleSearchPanel();">Apply Search Filters</button>
         </div>
       </div>
     </div>
@@ -906,6 +941,16 @@
         }
         executeSearchQuery();
       });
+
+      function toggleMobileNav() {
+        const navMenu = document.getElementById('mobileNavMenu');
+        navMenu.classList.toggle('mobile-open');
+      }
+
+      function toggleSearchPanel() {
+        const searchWrapper = document.getElementById('searchDropdownWrapper');
+        searchWrapper.classList.toggle('open');
+      }
 
       function executeSearchQuery() {
         const selectedMake = document.getElementById('filterMake').value;
