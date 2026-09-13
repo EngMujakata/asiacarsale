@@ -2,943 +2,1227 @@
 <html lang="en">
   <head>
     <meta charset="UTF-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0" />
-    <title data-id="th-modified">
-      AsiaCarSale – Thailand Cars for Zimbabwe
-    </title>
-    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800;900&amp;display=swap" rel="stylesheet" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>AsiaCarSale – Commercial & Passenger Vehicle Exports from Thailand</title>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800;900&display=swap" rel="stylesheet" />
     <style>
       *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
 
-    :root {
-      --red: #D0021B;
-      --red-dark: #A80016;
-      --black: #111111;
-      --dark: #061A40;
-      --gray: #F4F4F4;
-      --mid: #888888;
-      --border: #E8E8E8;
-      --white: #FFFFFF;
-      --green: #25D366;
-    }
+      :root {
+        --navy: #0B192C;
+        --navy-dark: #040D12;
+        --crimson: #990000;
+        --crimson-hover: #7A0000;
+        --charcoal: #212529;
+        --surface: #F8F9FA;
+        --surface-card: #FFFFFF;
+        --border-color: #DDE2E6;
+        --text-muted: #6C757D;
+      }
 
-    html, body {
-      font-family: 'Inter', sans-serif;
-      background: var(--white);
-      color: var(--black);
-      max-width: 430px;
-      margin: 0 auto;
-      min-height: 100vh;
-      position: relative;
-    }
+      body {
+        font-family: 'Inter', sans-serif;
+        background: var(--surface);
+        color: var(--charcoal);
+        min-height: 100vh;
+        display: flex;
+        flex-direction: column;
+        line-height: 1.5;
+      }
 
-    /* ── TOP NAV ── */
-    .top-nav {
-      display: flex;
-      align-items: center;
-      justify-content: space-between;
-      padding: 14px 16px;
-      background: var(--white);
-      position: sticky;
-      top: 0;
-      z-index: 200;
-      border-bottom: 1px solid var(--border);
-    }
-    .hamburger { font-size: 1.3rem; cursor: pointer; color: var(--black); }
-    .brand-logo {
-      height: 32px;
-      width: auto;
-      display: block;
-    }
-    .nav-right { display: flex; align-items: center; gap: 8px; }
-    .currency-btn {
-      border: 1.5px solid var(--border);
-      border-radius: 8px;
-      padding: 5px 10px;
-      font-size: 0.78rem;
-      font-weight: 600;
-      background: var(--white);
-      cursor: pointer;
-      display: flex;
-      align-items: center;
-      gap: 4px;
-      color: var(--black);
-    }
+      /* Global Header Structure */
+      header {
+        background: var(--navy);
+        color: #FFFFFF;
+        border-bottom: 2px solid var(--crimson);
+      }
+      .header-container {
+        max-width: 1280px;
+        margin: 0 auto;
+        padding: 16px 32px;
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+      }
+      .brand-title {
+        font-size: 1.35rem;
+        font-weight: 800;
+        letter-spacing: -0.5px;
+        color: #FFFFFF;
+        text-decoration: none;
+        text-transform: uppercase;
+      }
+      .brand-title span { color: var(--crimson); }
+      .header-meta {
+        font-size: 0.78rem;
+        color: #ADB5BD;
+        font-weight: 500;
+        letter-spacing: 0.2px;
+      }
 
-    /* ── HERO ── */
-    .hero {
-      background: var(--black);
-      position: relative;
-      overflow: hidden;
-      padding: 0;
-    }
-    .hero img {
-      width: 100%;
-      display: block;
-    }
+      .nav-bar {
+        background: var(--navy-dark);
+        border-top: 1px solid rgba(255,255,255,0.08);
+      }
+      .nav-content {
+        max-width: 1280px;
+        margin: 0 auto;
+        padding: 0 32px;
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+      }
+      .nav-links {
+        display: flex;
+        list-style: none;
+      }
+      .nav-links a {
+        display: block;
+        padding: 12px 20px;
+        color: #CED4DA;
+        text-decoration: none;
+        font-size: 0.8rem;
+        font-weight: 600;
+        text-transform: uppercase;
+        letter-spacing: 0.5px;
+        transition: color 0.15s ease;
+      }
+      .nav-links a:hover { color: #FFFFFF; background: rgba(255,255,255,0.04); }
+      .admin-auth-trigger {
+        background: transparent;
+        color: #CED4DA;
+        border: 1px solid rgba(255,255,255,0.2);
+        padding: 6px 14px;
+        border-radius: 3px;
+        font-size: 0.75rem;
+        font-weight: 600;
+        text-transform: uppercase;
+        letter-spacing: 0.5px;
+        cursor: pointer;
+        transition: all 0.15s ease;
+      }
+      .admin-auth-trigger:hover { background: var(--crimson); border-color: var(--crimson); color: #FFFFFF; }
 
-    /* ── SEARCH PANEL ── */
-    .search-panel {
-      background: var(--dark);
-      padding: 14px 14px;
-    }
-    .search-panel h3 {
-      color: var(--white);
-      font-size: 0.86rem;
-      font-weight: 700;
-      margin-bottom: 10px;
-    }
-    .search-grid {
-      display: grid;
-      grid-template-columns: 1fr 1fr;
-      gap: 8px;
-      margin-bottom: 8px;
-    }
-    .search-field {
-      background: rgba(255,255,255,0.07);
-      border: 1px solid rgba(255,255,255,0.12);
-      border-radius: 9px;
-      padding: 8px 10px;
-    }
-    .search-field label {
-      display: block;
-      font-size: 0.58rem;
-      color: #888;
-      font-weight: 600;
-      text-transform: uppercase;
-      letter-spacing: 0.5px;
-      margin-bottom: 2px;
-    }
-    .search-field select {
-      background: transparent;
-      border: none;
-      color: var(--white);
-      font-size: 0.8rem;
-      font-weight: 600;
-      font-family: 'Inter', sans-serif;
-      width: 100%;
-      appearance: none;
-      cursor: pointer;
-    }
-    .search-field select option { background: #222; color: var(--white); }
-    .search-btn-full {
-      width: 100%;
-      background: var(--red);
-      color: var(--white);
-      border: none;
-      border-radius: 9px;
-      padding: 11px;
-      font-size: 0.84rem;
-      font-weight: 700;
-      cursor: pointer;
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      gap: 8px;
-      margin-bottom: 10px;
-      letter-spacing: 0.2px;
-    }
+      /* Search Control Section */
+      .search-wrapper {
+        background: var(--navy);
+        padding: 32px;
+      }
+      .search-panel {
+        max-width: 1280px;
+        margin: 0 auto;
+        background: var(--surface-card);
+        border-radius: 4px;
+        box-shadow: 0 4px 12px rgba(0,0,0,0.15);
+        padding: 24px;
+        border-top: 3px solid var(--crimson);
+      }
+      .panel-heading {
+        font-size: 0.85rem;
+        font-weight: 800;
+        text-transform: uppercase;
+        letter-spacing: 0.8px;
+        color: var(--navy);
+        margin-bottom: 16px;
+        padding-bottom: 8px;
+        border-bottom: 1px solid var(--border-color);
+      }
+      .search-grid {
+        display: grid;
+        grid-template-columns: repeat(auto-fit, minmax(170px, 1fr)) 130px;
+        gap: 12px;
+        align-items: end;
+      }
+      .input-group {
+        display: flex;
+        flex-direction: column;
+        gap: 4px;
+      }
+      .input-group label {
+        font-size: 0.68rem;
+        font-weight: 700;
+        color: var(--text-muted);
+        text-transform: uppercase;
+        letter-spacing: 0.4px;
+      }
+      .input-group select, .input-group input {
+        padding: 9px 12px;
+        border: 1px solid var(--border-color);
+        border-radius: 3px;
+        font-size: 0.82rem;
+        font-family: 'Inter', sans-serif;
+        background: #FFFFFF;
+        color: var(--charcoal);
+      }
+      .search-action-btn {
+        background: var(--crimson);
+        color: #FFFFFF;
+        border: none;
+        border-radius: 3px;
+        padding: 10px;
+        font-size: 0.8rem;
+        font-weight: 700;
+        text-transform: uppercase;
+        letter-spacing: 0.5px;
+        cursor: pointer;
+        height: 38px;
+        transition: background 0.15s ease;
+      }
+      .search-action-btn:hover { background: var(--crimson-hover); }
 
-    /* ── SECTION HEADER ── */
-    .sec-header {
-      display: flex;
-      align-items: center;
-      justify-content: space-between;
-      padding: 14px 14px 8px;
-    }
-    .sec-header h2 { font-size: 0.92rem; font-weight: 800; }
-    #recommendedSection .sec-header h2::before { content: '✨ '; font-size: 0.85em; }
-    .sec-header a { font-size: 0.72rem; color: var(--red); font-weight: 600; text-decoration: none; display: flex; align-items: center; gap: 3px; }
+      /* Main Inventory Workspace */
+      .workspace {
+        max-width: 1280px;
+        margin: 32px auto;
+        padding: 0 32px;
+        display: grid;
+        grid-template-columns: 240px 1fr;
+        gap: 24px;
+        width: 100%;
+      }
+      .filter-sidebar {
+        background: var(--surface-card);
+        border: 1px solid var(--border-color);
+        border-radius: 4px;
+        padding: 16px;
+        height: fit-content;
+      }
+      .filter-sidebar h3 {
+        font-size: 0.8rem;
+        font-weight: 800;
+        text-transform: uppercase;
+        letter-spacing: 0.5px;
+        color: var(--navy);
+        margin-bottom: 12px;
+        padding-bottom: 6px;
+        border-bottom: 1px solid var(--border-color);
+      }
+      .sidebar-list { list-style: none; }
+      .sidebar-item {
+        padding: 8px 10px;
+        font-size: 0.8rem;
+        font-weight: 600;
+        color: var(--charcoal);
+        border-radius: 3px;
+        cursor: pointer;
+        margin-bottom: 2px;
+        transition: background 0.1s;
+      }
+      .sidebar-item:hover, .sidebar-item.active { background: #E9ECEF; color: var(--crimson); }
 
-    /* ── CAR CARDS ── */
-    .cars-scroll {
-      display: flex;
-      gap: 12px;
-      padding: 0 16px 20px;
-      overflow-x: auto;
-      scroll-snap-type: x mandatory;
-      -webkit-overflow-scrolling: touch;
-      scrollbar-width: none;
-    }
-    .cars-scroll::-webkit-scrollbar { display: none; }
-    .car-card {
-      min-width: 160px;
-      background: var(--white);
-      border: 1px solid var(--border);
-      border-radius: 12px;
-      overflow: hidden;
-      scroll-snap-align: start;
-      flex-shrink: 0;
-      cursor: pointer;
-    }
-    .car-card-img {
-      position: relative;
-      background: var(--gray);
-      height: 108px;
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      font-size: 2.2rem;
-      overflow: hidden;
-    }
-    .car-card-img img {
-      width: 100%;
-      height: 100%;
-      object-fit: cover;
-      display: block;
-    }
-    .car-card-body { padding: 10px; }
-    .car-card-name { font-size: 0.8rem; font-weight: 700; margin-bottom: 2px; line-height: 1.3; }
-    .car-card-meta { font-size: 0.65rem; color: var(--mid); margin-bottom: 6px; }
-    .car-card-price { font-size: 0.9rem; font-weight: 800; color: var(--red); }
+      .catalog-container { display: flex; flex-direction: column; gap: 16px; }
+      .catalog-toolbar {
+        background: var(--surface-card);
+        border: 1px solid var(--border-color);
+        border-radius: 4px;
+        padding: 12px 16px;
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+      }
+      .catalog-toolbar h2 {
+        font-size: 0.9rem;
+        font-weight: 800;
+        text-transform: uppercase;
+        letter-spacing: 0.5px;
+        color: var(--navy);
+      }
+      .inventory-grid {
+        display: grid;
+        grid-template-columns: repeat(auto-fill, minmax(240px, 1fr));
+        gap: 16px;
+      }
+      .inventory-card {
+        background: var(--surface-card);
+        border: 1px solid var(--border-color);
+        border-radius: 4px;
+        overflow: hidden;
+        cursor: pointer;
+        display: flex;
+        flex-direction: column;
+        transition: border-color 0.15s ease, box-shadow 0.15s ease;
+      }
+      .inventory-card:hover { border-color: var(--navy); box-shadow: 0 4px 12px rgba(0,0,0,0.06); }
+      .card-media {
+        width: 100%;
+        height: 160px;
+        background: #E9ECEF;
+        position: relative;
+      }
+      .card-media img { width: 100%; height: 100%; object-fit: cover; }
+      .card-tag {
+        position: absolute;
+        top: 8px;
+        left: 8px;
+        background: var(--crimson);
+        color: #FFFFFF;
+        font-size: 0.6rem;
+        font-weight: 700;
+        text-transform: uppercase;
+        letter-spacing: 0.5px;
+        padding: 2px 6px;
+        border-radius: 2px;
+      }
+      .card-content { padding: 12px; display: flex; flex-direction: column; flex: 1; }
+      .card-title {
+        font-size: 0.82rem;
+        font-weight: 700;
+        color: var(--charcoal);
+        margin-bottom: 4px;
+        height: 2.6em;
+        overflow: hidden;
+      }
+      .card-specs { font-size: 0.72rem; color: var(--text-muted); margin-bottom: 8px; }
+      .card-pricing {
+        margin-top: auto;
+        display: flex;
+        justify-content: space-between;
+        align-items: baseline;
+        border-top: 1px solid var(--border-color);
+        padding-top: 8px;
+      }
+      .card-price { font-size: 0.95rem; font-weight: 800; color: var(--crimson); }
+      .card-meta-text { font-size: 0.72rem; font-weight: 600; color: var(--text-muted); }
+      .empty-notice {
+        grid-column: 1 / -1;
+        background: var(--surface-card);
+        border: 1px solid var(--border-color);
+        padding: 40px;
+        text-align: center;
+        font-size: 0.82rem;
+        color: var(--text-muted);
+        text-transform: uppercase;
+        letter-spacing: 0.5px;
+      }
 
-    /* ── BOTTOM NAV ── */
-    .bottom-nav {
-      position: fixed;
-      bottom: 0;
-      left: 50%;
-      transform: translateX(-50%);
-      width: 100%;
-      max-width: 430px;
-      background: var(--white);
-      border-top: 1px solid var(--border);
-      display: flex;
-      justify-content: space-around;
-      padding: 10px 0 18px;
-      z-index: 300;
-    }
-    .nav-item {
-      display: flex;
-      flex-direction: column;
-      align-items: center;
-      gap: 3px;
-      cursor: pointer;
-      flex: 1;
-    }
-    .nav-item-icon { font-size: 1.2rem; }
-    .nav-item-label { font-size: 0.6rem; font-weight: 600; color: var(--mid); }
-    .nav-item.active .nav-item-icon,
-    .nav-item.active .nav-item-label { color: var(--red); }
+      /* Editorial Information Layout */
+      .editorial-section {
+        max-width: 1280px;
+        margin: 0 auto 40px;
+        padding: 0 32px;
+        width: 100%;
+        display: grid;
+        grid-template-columns: 2fr 1fr;
+        gap: 24px;
+      }
+      .editorial-box {
+        background: var(--surface-card);
+        border: 1px solid var(--border-color);
+        border-radius: 4px;
+        padding: 24px;
+      }
+      .editorial-box h3 {
+        font-size: 0.85rem;
+        font-weight: 800;
+        text-transform: uppercase;
+        letter-spacing: 0.5px;
+        color: var(--navy);
+        margin-bottom: 12px;
+        padding-bottom: 8px;
+        border-bottom: 2px solid var(--surface);
+      }
+      .editorial-box p, .editorial-box li {
+        font-size: 0.78rem;
+        color: #495057;
+        line-height: 1.6;
+        margin-bottom: 8px;
+      }
+      .editorial-box ol { padding-left: 16px; }
+      .process-flow {
+        background: #F1F3F5;
+        border: 1px solid var(--border-color);
+        color: var(--navy);
+        padding: 12px;
+        border-radius: 3px;
+        font-size: 0.72rem;
+        font-weight: 700;
+        text-align: center;
+        margin-top: 12px;
+        letter-spacing: 0.3px;
+        text-transform: uppercase;
+      }
 
-    /* ── BRAND FILTER ── */
-    .brand-filter {
-      display: flex;
-      gap: 8px;
-      padding: 0 16px 14px;
-      overflow-x: auto;
-      scrollbar-width: none;
-    }
-    .brand-filter::-webkit-scrollbar { display: none; }
-    .brand-chip {
-      flex-shrink: 0;
-      background: var(--white);
-      border: 1.5px solid var(--border);
-      color: var(--mid);
-      font-size: 0.78rem;
-      font-weight: 600;
-      padding: 7px 16px;
-      border-radius: 20px;
-      cursor: pointer;
-    }
-    .brand-chip.active {
-      background: var(--red);
-      border-color: var(--red);
-      color: var(--white);
-    }
-    .cars-empty {
-      padding: 30px 16px;
-      text-align: center;
-      color: var(--mid);
-      font-size: 0.85rem;
-      width: 100%;
-    }
+      /* Footer Design */
+      footer {
+        background: var(--navy-dark);
+        color: #FFFFFF;
+        margin-top: auto;
+        padding: 32px;
+        text-align: center;
+        border-top: 3px solid var(--crimson);
+      }
+      footer p { font-size: 0.75rem; color: #ADB5BD; margin-bottom: 4px; }
 
-    /* ── ADD/EDIT CAR MODAL ── */
-    .modal-overlay {
-      position: fixed;
-      inset: 0;
-      background: rgba(0,0,0,0.55);
-      z-index: 400;
-      display: none;
-      align-items: flex-end;
-      justify-content: center;
-    }
-    .modal-overlay.open { display: flex; }
-    .modal-sheet {
-      background: var(--white);
-      width: 100%;
-      max-width: 430px;
-      max-height: 88vh;
-      overflow-y: auto;
-      border-radius: 18px 18px 0 0;
-      padding: 18px 18px 28px;
-    }
-    .modal-header {
-      display: flex;
-      align-items: center;
-      justify-content: space-between;
-      margin-bottom: 16px;
-    }
-    .modal-header h3 { font-size: 1.05rem; font-weight: 800; }
-    .modal-close {
-      background: var(--gray);
-      border: none;
-      width: 30px;
-      height: 30px;
-      border-radius: 50%;
-      font-size: 1rem;
-      cursor: pointer;
-      color: var(--mid);
-    }
-    .form-group { margin-bottom: 12px; }
-    .form-group label {
-      display: block;
-      font-size: 0.72rem;
-      font-weight: 600;
-      color: var(--mid);
-      text-transform: uppercase;
-      letter-spacing: 0.4px;
-      margin-bottom: 5px;
-    }
-    .form-group input, .form-group select {
-      width: 100%;
-      padding: 11px 12px;
-      border: 1.5px solid var(--border);
-      border-radius: 9px;
-      font-size: 0.88rem;
-      font-family: 'Inter', sans-serif;
-      color: var(--black);
-      background: var(--white);
-    }
-    .form-row { display: grid; grid-template-columns: 1fr 1fr; gap: 10px; }
+      /* Modals & Authentication Systems */
+      .modal-backdrop {
+        position: fixed;
+        inset: 0;
+        background: rgba(11, 25, 44, 0.75);
+        z-index: 1000;
+        display: none;
+        align-items: center;
+        justify-content: center;
+        padding: 20px;
+      }
+      .modal-backdrop.open { display: flex; }
+      
+      .modal-frame {
+        background: var(--surface-card);
+        width: 100%;
+        max-width: 600px;
+        max-height: 90vh;
+        overflow-y: auto;
+        border-radius: 4px;
+        box-shadow: 0 15px 35px rgba(0,0,0,0.3);
+        border-top: 4px solid var(--navy);
+      }
+      .modal-header-bar {
+        background: var(--surface);
+        padding: 16px 20px;
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        border-bottom: 1px solid var(--border-color);
+      }
+      .modal-header-bar h3 {
+        font-size: 0.85rem;
+        font-weight: 800;
+        text-transform: uppercase;
+        letter-spacing: 0.8px;
+        color: var(--navy);
+      }
+      .modal-close-btn {
+        background: transparent;
+        border: none;
+        font-size: 0.9rem;
+        font-weight: 700;
+        cursor: pointer;
+        color: var(--text-muted);
+      }
+      .modal-body-content { padding: 24px; }
 
-    /* Photo Upload Grid */
-    .photo-grid {
-      display: grid;
-      grid-template-columns: repeat(3, 1fr);
-      gap: 8px;
-      margin-bottom: 12px;
-    }
-    .photo-thumb {
-      position: relative;
-      aspect-ratio: 1;
-      border-radius: 8px;
-      overflow: hidden;
-      background: var(--gray);
-      border: 1.5px solid var(--border);
-    }
-    .photo-thumb img { width: 100%; height: 100%; object-fit: cover; display: block; }
-    .photo-thumb-del {
-      position: absolute;
-      top: 3px; right: 3px;
-      width: 20px; height: 20px;
-      border-radius: 50%;
-      background: rgba(0,0,0,0.6);
-      color: #fff;
-      border: none;
-      font-size: 0.75rem;
-      display: flex; align-items: center; justify-content: center;
-      cursor: pointer;
-    }
-    .photo-thumb-add {
-      aspect-ratio: 1;
-      border-radius: 8px;
-      border: 1.5px dashed var(--border);
-      background: var(--gray);
-      display: flex; flex-direction: column;
-      align-items: center; justify-content: center;
-      cursor: pointer;
-      color: var(--mid);
-      font-size: 1.4rem;
-    }
+      /* Form Structures */
+      .form-grid-dual { display: grid; grid-template-columns: 1fr 1fr; gap: 12px; margin-bottom: 12px; }
+      .form-field-group { display: flex; flex-direction: column; gap: 4px; margin-bottom: 12px; }
+      .form-field-group.span-full { grid-column: span 2; }
+      .form-field-group label {
+        font-size: 0.68rem;
+        font-weight: 700;
+        color: var(--text-muted);
+        text-transform: uppercase;
+        letter-spacing: 0.4px;
+      }
+      .form-field-group input, .form-field-group select {
+        padding: 9px 12px;
+        border: 1px solid var(--border-color);
+        border-radius: 3px;
+        font-size: 0.82rem;
+        font-family: 'Inter', sans-serif;
+      }
 
-    .modal-submit {
-      width: 100%;
-      background: var(--red);
-      color: var(--white);
-      border: none;
-      border-radius: 10px;
-      padding: 14px;
-      font-size: 0.92rem;
-      font-weight: 700;
-      cursor: pointer;
-      margin-top: 6px;
-    }
-    .modal-delete {
-      width: 100%;
-      background: var(--white);
-      color: var(--red);
-      border: 1.5px solid var(--red);
-      border-radius: 10px;
-      padding: 12px;
-      font-size: 0.85rem;
-      font-weight: 700;
-      cursor: pointer;
-      margin-top: 8px;
-    }
+      .image-upload-zone {
+        display: grid;
+        grid-template-columns: repeat(4, 1fr);
+        gap: 8px;
+        margin-bottom: 16px;
+      }
+      .img-preview-box {
+        position: relative;
+        aspect-ratio: 1;
+        border-radius: 3px;
+        overflow: hidden;
+        border: 1px solid var(--border-color);
+        background: var(--surface);
+      }
+      .img-preview-box img { width: 100%; height: 100%; object-fit: cover; }
+      .img-remove-btn {
+        position: absolute;
+        top: 3px;
+        right: 3px;
+        background: rgba(0,0,0,0.7);
+        color: #FFFFFF;
+        border: none;
+        width: 18px;
+        height: 18px;
+        border-radius: 50%;
+        font-size: 0.6rem;
+        cursor: pointer;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+      }
+      .img-add-box {
+        aspect-ratio: 1;
+        border-radius: 3px;
+        border: 1px dashed var(--border-color);
+        background: var(--surface);
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        font-size: 1.2rem;
+        font-weight: 700;
+        color: var(--text-muted);
+        cursor: pointer;
+      }
 
-    /* ── DETAIL OVERLAY ── */
-    .detail-overlay {
-      position: fixed;
-      inset: 0;
-      background: var(--white);
-      z-index: 500;
-      display: none;
-      flex-direction: column;
-      overflow-y: auto;
-    }
-    .detail-overlay.open { display: flex; }
-    .detail-topbar {
-      position: sticky;
-      top: 0;
-      background: var(--white);
-      display: flex;
-      align-items: center;
-      gap: 12px;
-      padding: 14px 16px;
-      border-bottom: 1px solid var(--border);
-      z-index: 10;
-    }
-    .detail-back {
-      background: var(--gray);
-      border: none;
-      width: 34px; height: 34px;
-      border-radius: 50%;
-      font-size: 1.1rem;
-      cursor: pointer;
-    }
-    .detail-img-wrap {
-      width: 100%;
-      height: 240px;
-      background: var(--gray);
-    }
-    .detail-img-wrap img { width: 100%; height: 100%; object-fit: cover; }
+      .btn-primary {
+        width: 100%;
+        background: var(--crimson);
+        color: #FFFFFF;
+        border: none;
+        border-radius: 3px;
+        padding: 11px;
+        font-size: 0.8rem;
+        font-weight: 700;
+        text-transform: uppercase;
+        letter-spacing: 0.5px;
+        cursor: pointer;
+        transition: background 0.15s ease;
+      }
+      .btn-primary:hover { background: var(--crimson-hover); }
 
-    /* ── ADMIN PANEL ── */
-    .admin-manage-btn {
-      position: fixed;
-      bottom: 78px;
-      left: 16px;
-      background: var(--dark);
-      color: var(--white);
-      border: none;
-      padding: 10px 16px;
-      border-radius: 24px;
-      font-size: 0.75rem;
-      font-weight: 700;
-      cursor: pointer;
-      z-index: 250;
-      box-shadow: 0 4px 14px rgba(0,0,0,0.3);
-    }
-    .admin-panel-overlay {
-      position: fixed;
-      inset: 0;
-      background: rgba(0,0,0,0.55);
-      z-index: 380;
-      display: none;
-      align-items: flex-end;
-      justify-content: center;
-    }
-    .admin-panel-overlay.open { display: flex; }
-    .admin-panel-sheet {
-      background: var(--white);
-      width: 100%;
-      max-width: 430px;
-      max-height: 80vh;
-      overflow-y: auto;
-      border-radius: 18px 18px 0 0;
-      padding: 18px 18px 28px;
-    }
-    .admin-list-item {
-      display: flex;
-      align-items: center;
-      gap: 12px;
-      padding: 10px 0;
-      border-bottom: 1px solid var(--border);
-    }
-    .admin-list-item img {
-      width: 56px;
-      height: 44px;
-      object-fit: cover;
-      border-radius: 6px;
-    }
-    .admin-list-info { flex: 1; min-width: 0; }
-    .admin-list-name { font-size: 0.82rem; font-weight: 700; }
-    .admin-list-price { font-size: 0.75rem; color: var(--red); font-weight: 700; }
-    .admin-list-edit-btn {
-      background: var(--gray);
-      border: none;
-      padding: 7px 14px;
-      border-radius: 8px;
-      font-size: 0.72rem;
-      font-weight: 600;
-      cursor: pointer;
-    }
-    .admin-add-new-btn {
-      width: 100%;
-      background: var(--red);
-      color: var(--white);
-      border: none;
-      border-radius: 10px;
-      padding: 13px;
-      font-size: 0.88rem;
-      font-weight: 700;
-      cursor: pointer;
-      margin-bottom: 14px;
-    }
+      .btn-secondary-outline {
+        width: 100%;
+        background: transparent;
+        color: var(--crimson);
+        border: 1px solid var(--crimson);
+        border-radius: 3px;
+        padding: 9px;
+        font-size: 0.78rem;
+        font-weight: 700;
+        text-transform: uppercase;
+        letter-spacing: 0.5px;
+        cursor: pointer;
+        margin-top: 8px;
+      }
+
+      /* Admin Record Table */
+      .admin-table {
+        width: 100%;
+        border-collapse: collapse;
+        margin-top: 8px;
+      }
+      .admin-table th, .admin-table td {
+        padding: 10px;
+        text-align: left;
+        border-bottom: 1px solid var(--border-color);
+        font-size: 0.78rem;
+      }
+      .admin-table th {
+        background: var(--surface);
+        color: var(--navy);
+        font-weight: 700;
+        text-transform: uppercase;
+        letter-spacing: 0.4px;
+      }
+      .admin-table img { width: 45px; height: 32px; object-fit: cover; border-radius: 2px; }
+      .table-action-btn {
+        background: var(--navy);
+        color: #FFFFFF;
+        border: none;
+        padding: 5px 10px;
+        border-radius: 2px;
+        font-size: 0.7rem;
+        font-weight: 600;
+        text-transform: uppercase;
+        cursor: pointer;
+      }
+
+      /* Professional Authentication Modal Box */
+      .auth-modal-frame {
+        background: var(--surface-card);
+        width: 100%;
+        max-width: 400px;
+        border-radius: 4px;
+        box-shadow: 0 15px 35px rgba(0,0,0,0.3);
+        border-top: 4px solid var(--navy);
+        overflow: hidden;
+      }
+      .auth-header {
+        background: var(--surface);
+        padding: 16px 20px;
+        border-bottom: 1px solid var(--border-color);
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+      }
+      .auth-header h3 {
+        font-size: 0.8rem;
+        font-weight: 800;
+        text-transform: uppercase;
+        letter-spacing: 0.8px;
+        color: var(--navy);
+      }
+      .auth-body { padding: 24px; }
+      .auth-desc {
+        font-size: 0.75rem;
+        color: var(--text-muted);
+        margin-bottom: 16px;
+        line-height: 1.5;
+      }
+
+      /* Detail View Grid */
+      .detail-layout-grid {
+        display: grid;
+        grid-template-columns: 1fr 1fr;
+        gap: 20px;
+      }
+      .detail-media-preview {
+        width: 100%;
+        height: 260px;
+        background: var(--surface);
+        border-radius: 3px;
+        overflow: hidden;
+        border: 1px solid var(--border-color);
+      }
+      .detail-media-preview img { width: 100%; height: 100%; object-fit: cover; }
+      .specs-grid-box {
+        display: grid;
+        grid-template-columns: 1fr 1fr;
+        gap: 8px;
+        margin-top: 12px;
+        background: var(--surface);
+        padding: 12px;
+        border-radius: 3px;
+        border: 1px solid var(--border-color);
+      }
+      .spec-cell span {
+        display: block;
+        font-size: 0.62rem;
+        font-weight: 700;
+        color: var(--text-muted);
+        text-transform: uppercase;
+        letter-spacing: 0.4px;
+      }
+      .spec-cell strong {
+        font-size: 0.78rem;
+        color: var(--charcoal);
+        font-weight: 700;
+      }
+
+      @media(max-width: 768px) {
+        .workspace { grid-template-columns: 1fr; }
+        .filter-sidebar { display: none; }
+        .editorial-section { grid-template-columns: 1fr; }
+        .detail-layout-grid { grid-template-columns: 1fr; }
+      }
     </style>
   </head>
   <body>
 
-    <!-- TOP NAV -->
-    <nav class="top-nav">
-      <div class="hamburger">☰</div>
-      <div style="font-weight: 900; font-size: 1.1rem; color: var(--dark)">AsiaCarSale</div>
-      <div class="nav-right">
-        <button class="currency-btn">USD ($)</button>
-      </div>
-    </nav>
-
-    <!-- SEARCH PANEL / FILTERS -->
-    <section class="search-panel">
-      <h3>SEARCH VEHICLES</h3>
-      <div class="search-grid">
-        <div class="search-field">
-          <label>Brand</label>
-          <select id="searchMake" onchange="applyFilters()">
-            <option value="">All Brands</option>
-            <option value="Toyota">Toyota</option>
-            <option value="Isuzu">Isuzu</option>
-            <option value="Ford">Ford</option>
-            <option value="Nissan">Nissan</option>
-            <option value="Mazda">Mazda</option>
-          </select>
-        </div>
-        <div class="search-field">
-          <label>Price Range</label>
-          <select id="searchPrice" onchange="applyFilters()">
-            <option value="">Any Price</option>
-            <option value="0-10000">Under $10,000</option>
-            <option value="10000-20000">$10,000 - $20,000</option>
-            <option value="20000-999999">Over $20,000</option>
-          </select>
-        </div>
-        <div class="search-field" style="grid-column: span 2;">
-          <label>Min Year</label>
-          <select id="searchYear" onchange="applyFilters()">
-            <option value="">Any Year</option>
-            <option value="2015">2015+</option>
-            <option value="2018">2018+</option>
-            <option value="2020">2020+</option>
-            <option value="2022">2022+</option>
-          </select>
+    <!-- SITE HEADER -->
+    <header>
+      <div class="header-container">
+        <a href="#" class="brand-title">Asia<span>CarSale</span></a>
+        <div class="header-meta">
+          <span>Port Logistics: Bangkok Export Terminal to Durban & Beira</span>
         </div>
       </div>
-      <button class="search-btn-full" onclick="applyFilters()">Apply Filters</button>
-    </section>
-
-    <!-- BRAND FILTER STRIP -->
-    <div style="padding-top: 14px;">
-      <div class="brand-filter" id="brandChips">
-        <button class="brand-chip active" onclick="selectChip('', this)">All</button>
-        <button class="brand-chip" onclick="selectChip('Toyota', this)">Toyota</button>
-        <button class="brand-chip" onclick="selectChip('Isuzu', this)">Isuzu</button>
-        <button class="brand-chip" onclick="selectChip('Ford', this)">Ford</button>
-        <button class="brand-chip" onclick="selectChip('Nissan', this)">Nissan</button>
-      </div>
-    </div>
-
-    <!-- CARS DISPLAY SECTION -->
-    <section id="recommendedSection">
-      <div class="sec-header">
-        <h2>Available Inventory</h2>
-      </div>
-      <div class="cars-scroll" id="carsContainer">
-        <!-- Rendered via JS -->
-      </div>
-    </section>
-
-    <!-- MANAGE LISTINGS TRIGGER BUTTON -->
-    <button class="admin-manage-btn" onclick="openAdminPanel()">⚙️ Manage Listings</button>
-
-    <!-- ADMIN PANEL OVERLAY -->
-    <div class="admin-panel-overlay" id="adminPanelOverlay">
-      <div class="admin-panel-sheet">
-        <div class="modal-header">
-          <h3>Manage Listings</h3>
-          <button class="modal-close" onclick="closeAdminPanel()">✕</button>
+      <div class="nav-bar">
+        <div class="nav-content">
+          <ul class="nav-links">
+            <li><a href="#">Inventory Directory</a></li>
+            <li><a href="#operationalWorkflow">Operational Workflow</a></li>
+          </ul>
+          <button class="admin-auth-trigger" onclick="triggerAdminAccess()">Restricted Management Access</button>
         </div>
-        <button class="admin-add-new-btn" onclick="openAddModal()">+ Add New Car</button>
-        <div id="adminCarList">
-          <!-- Rendered via JS -->
+      </div>
+    </header>
+
+    <!-- ADVANCED SEARCH PANEL -->
+    <div class="search-wrapper">
+      <div class="search-panel">
+        <div class="panel-heading">Vehicle Inventory Search Parameters</div>
+        <div class="search-grid">
+          <div class="input-group">
+            <label>Manufacturer</label>
+            <select id="filterMake" onchange="executeSearchQuery()">
+              <option value="">All Manufacturers</option>
+              <option value="Toyota">Toyota</option>
+              <option value="Isuzu">Isuzu</option>
+              <option value="Ford">Ford</option>
+              <option value="Nissan">Nissan</option>
+              <option value="Mazda">Mazda</option>
+            </select>
+          </div>
+          <div class="input-group">
+            <label>Price Range ($ USD)</label>
+            <select id="filterPrice" onchange="executeSearchQuery()">
+              <option value="">Any Valuation</option>
+              <option value="0-10000">Under $10,000</option>
+              <option value="10000-20000">$10,000 - $20,000</option>
+              <option value="20000-999999">Over $20,000</option>
+            </select>
+          </div>
+          <div class="input-group">
+            <label>Minimum Year</label>
+            <select id="filterYear" onchange="executeSearchQuery()">
+              <option value="">Any Production Year</option>
+              <option value="2015">2015 and Newer</option>
+              <option value="2018">2018 and Newer</option>
+              <option value="2020">2020 and Newer</option>
+            </select>
+          </div>
+          <div class="input-group">
+            <label>Transmission Type</label>
+            <select id="filterTrans" onchange="executeSearchQuery()">
+              <option value="">Any Transmission</option>
+              <option value="Automatic">Automatic</option>
+              <option value="Manual">Manual</option>
+            </select>
+          </div>
+          <button class="search-action-btn" onclick="executeSearchQuery()">Execute Search</button>
         </div>
       </div>
     </div>
 
-    <!-- ADD/EDIT CAR MODAL SHEET -->
-    <div class="modal-overlay" id="carModalOverlay">
-      <div class="modal-sheet">
-        <div class="modal-header">
-          <h3 id="modalTitle">Add New Car</h3>
-          <button class="modal-close" onclick="closeCarModal()">✕</button>
+    <!-- MAIN WORKSPACE -->
+    <div class="workspace">
+      <aside class="filter-sidebar">
+        <h3>Brand Directory</h3>
+        <ul class="sidebar-list">
+          <li class="sidebar-item active" onclick="applySidebarFilter('', this)">All Available Units</li>
+          <li class="sidebar-item" onclick="applySidebarFilter('Toyota', this)">Toyota</li>
+          <li class="sidebar-item" onclick="applySidebarFilter('Isuzu', this)">Isuzu</li>
+          <li class="sidebar-item" onclick="applySidebarFilter('Ford', this)">Ford</li>
+          <li class="sidebar-item" onclick="applySidebarFilter('Nissan', this)">Nissan</li>
+          <li class="sidebar-item" onclick="applySidebarFilter('Mazda', this)">Mazda</li>
+        </ul>
+      </aside>
+
+      <main class="catalog-container">
+        <div class="catalog-toolbar">
+          <h2 id="catalogHeaderTitle">Verified Stock Inventory</h2>
+          <span id="inventoryCountLabel" style="font-size: 0.75rem; font-weight: 700; color: var(--text-muted); text-transform: uppercase;">0 units recorded</span>
         </div>
-        <form id="carForm" onsubmit="saveCar(event)">
-          <input type="hidden" id="carId" />
-          
-          <div class="form-group">
-            <label>Car Photos</label>
-            <div class="photo-grid" id="photoGrid">
-              <label class="photo-thumb-add">
-                +
-                <input type="file" accept="image/*" multiple style="display:none" onchange="handleImageUpload(event)" />
-              </label>
-            </div>
-          </div>
+        <div class="inventory-grid" id="inventoryGridContainer">
+          <!-- Injected via JavaScript runtime -->
+        </div>
+      </main>
+    </div>
 
-          <div class="form-group">
-            <label>Car Name / Title</label>
-            <input type="text" id="carName" required placeholder="e.g. Toyota Hilux Revo" />
-          </div>
+    <!-- EDITORIAL & OPERATIONAL WORKFLOW SECTION -->
+    <div class="editorial-section" id="operationalWorkflow">
+      <div class="editorial-box">
+        <h3>Export Operations & Purchase Protocol</h3>
+        <p>AsiaCarSale coordinates direct vehicle acquisitions from verified suppliers and export hubs in Thailand, managing complete freight arrangements designated for port delivery to regional importers.</p>
+        <ol>
+          <li><strong>Unit Selection & Verification:</strong> Review specific engineering configurations, engine capacity, mileage, and documentation status.</li>
+          <li><strong>Secure Wire Transfer:</strong> Complete institutional payment through designated banking channels and submit transaction verification documents.</li>
+          <li><strong>Export Processing & Shipping:</strong> Vehicles undergo export inspection, de-registration, and booking on ro-ro or container vessels.</li>
+          <li><strong>Documentation Handover:</strong> Original Bills of Lading and export certificates are dispatched via secure courier.</li>
+          <li><strong>Port Clearance Logistics:</strong> Importers manage regional port customs clearance and final transport coordination.</li>
+        </ol>
+        <div class="process-flow">
+          VEHICLE SELECTION → WIRE SETTLEMENT → EXPORT PROCESSING → VESSEL TRANSIT → DOCUMENT DISPATCH → CUSTOMS CLEARANCE
+        </div>
+      </div>
 
-          <div class="form-row">
-            <div class="form-group">
-              <label>Brand</label>
-              <select id="carBrand" required>
-                <option value="Toyota">Toyota</option>
-                <option value="Isuzu">Isuzu</option>
-                <option value="Ford">Ford</option>
-                <option value="Nissan">Nissan</option>
-                <option value="Mazda">Mazda</option>
-              </select>
-            </div>
-            <div class="form-group">
-              <label>Price ($ USD)</label>
-              <input type="number" id="carPrice" required placeholder="18500" />
-            </div>
-          </div>
-
-          <div class="form-row">
-            <div class="form-group">
-              <label>Year</label>
-              <input type="number" id="carYear" required placeholder="2020" />
-            </div>
-            <div class="form-group">
-              <label>Transmission</label>
-              <select id="carTrans">
-                <option value="Automatic">Automatic</option>
-                <option value="Manual">Manual</option>
-              </select>
-            </div>
-          </div>
-
-          <button type="submit" class="modal-submit">Save Vehicle</button>
-          <button type="button" class="modal-delete" id="deleteBtn" style="display:none" onclick="deleteCar()">Delete Vehicle</button>
-        </form>
+      <div class="editorial-box">
+        <h3>Regulatory Notice & Liability</h3>
+        <p>Operational scope covers vehicle acquisition within Thailand and scheduled maritime freight delivery up to the agreed discharge port (Beira, Durban, or alternative regional gateways).</p>
+        <p>Clients maintain full statutory responsibility for local import duties, surcharges, regulatory compliance testing, and inland carrier transportation from the destination discharge terminal.</p>
       </div>
     </div>
 
-    <!-- CAR DETAIL VIEW OVERLAY -->
-    <div class="detail-overlay" id="detailOverlay">
-      <div class="detail-topbar">
-        <button class="detail-back" onclick="closeDetail()">←</button>
-        <h2 id="detailHeaderTitle">Vehicle Details</h2>
-      </div>
-      <div class="detail-img-wrap" id="detailImgWrap"></div>
-      <div style="padding: 16px;">
-        <h1 id="detailTitle" style="font-size: 1.3rem; font-weight:800;"></h1>
-        <div id="detailPrice" style="font-size: 1.5rem; color: var(--red); font-weight: 800; margin: 8px 0;"></div>
-        <div id="detailSpecs" style="color: var(--mid); font-size: 0.9rem; line-height: 1.6;"></div>
+    <!-- FOOTER -->
+    <footer>
+      <p>© 2026 AsiaCarSale. All rights reserved. International Vehicle Export Logistics.</p>
+      <p style="font-size: 0.68rem; color: #6C757D;">Authorized Dealer Management Framework Enabled</p>
+    </footer>
+
+    <!-- PROFESSIONAL PASSWORD AUTHENTICATION MODAL -->
+    <div class="modal-backdrop" id="authModalBackdrop">
+      <div class="auth-modal-frame">
+        <div class="auth-header">
+          <h3>Administrative Authentication</h3>
+          <button class="modal-close-btn" onclick="closeAuthModal()">✕</button>
+        </div>
+        <div class="auth-body">
+          <p class="auth-desc">Restricted access area. Please enter your administrative authorization key to access inventory management modules.</p>
+          <div class="form-field-group">
+            <label>Security Access Key</label>
+            <input type="password" id="adminPasswordInput" placeholder="Enter authorization key" onkeypress="handleAuthKeypress(event)" />
+          </div>
+          <button class="btn-primary" onclick="verifyAdminPassword()">Authenticate Session</button>
+        </div>
       </div>
     </div>
 
-    <!-- BOTTOM NAV -->
-    <nav class="bottom-nav">
-      <div class="nav-item active" onclick="closeAdminPanel(); closeDetail();">
-        <div class="nav-item-icon">🚗</div>
-        <div class="nav-item-label">Home</div>
+    <!-- ADMIN MANAGEMENT PANEL OVERLAY -->
+    <div class="modal-backdrop" id="adminPanelBackdrop">
+      <div class="modal-frame" style="max-width: 850px;">
+        <div class="modal-header-bar">
+          <h3>Enterprise Inventory Control Panel</h3>
+          <button class="modal-close-btn" onclick="closeAdminPanel()">✕</button>
+        </div>
+        <div class="modal-body-content">
+          <button class="btn-primary" style="margin-bottom: 16px; width: auto; padding: 8px 16px;" onclick="openCarEditorModal()">+ Register New Vehicle Listing</button>
+          <div style="overflow-x: auto;">
+            <table class="admin-table">
+              <thead>
+                <tr>
+                  <th>Media</th>
+                  <th>Designation / Name</th>
+                  <th>Make / Model</th>
+                  <th>Valuation</th>
+                  <th>Year</th>
+                  <th>Action</th>
+                </tr>
+              </thead>
+              <tbody id="adminTableRowsContainer">
+                <!-- Rendered dynamically -->
+              </tbody>
+            </table>
+          </div>
+        </div>
       </div>
-      <div class="nav-item" onclick="openAdminPanel()">
-        <div class="nav-item-icon">⚙️</div>
-        <div class="nav-item-label">Manage</div>
+    </div>
+
+    <!-- VEHICLE EDITOR MODAL -->
+    <div class="modal-backdrop" id="carEditorBackdrop">
+      <div class="modal-frame">
+        <div class="modal-header-bar">
+          <h3 id="editorModalTitle">Vehicle Specification Registry</h3>
+          <button class="modal-close-btn" onclick="closeCarEditorModal()">✕</button>
+        </div>
+        <div class="modal-body-content">
+          <form id="vehicleFormRecord" onsubmit="commitVehicleRecord(event)">
+            <input type="hidden" id="recordId" />
+
+            <div class="form-field-group span-full">
+              <label>Vehicle Photographic Assets</label>
+              <div class="image-upload-zone" id="uploadAssetGrid">
+                <label class="img-add-box">
+                  +
+                  <input type="file" accept="image/*" multiple style="display:none" onchange="processImageFiles(event)" />
+                </label>
+              </div>
+            </div>
+
+            <div class="form-field-group span-full">
+              <label>Full Commercial Title / Designation</label>
+              <input type="text" id="inputName" required placeholder="e.g. Toyota Hilux Revo 2.8 GD-6 Double Cab" />
+            </div>
+
+            <div class="form-grid-dual">
+              <div class="form-field-group">
+                <label>Brand Manufacturer</label>
+                <select id="inputBrand" required>
+                  <option value="Toyota">Toyota</option>
+                  <option value="Isuzu">Isuzu</option>
+                  <option value="Ford">Ford</option>
+                  <option value="Nissan">Nissan</option>
+                  <option value="Mazda">Mazda</option>
+                </select>
+              </div>
+              <div class="form-field-group">
+                <label>Model Designation</label>
+                <input type="text" id="inputModel" required placeholder="e.g. Hilux Revo" />
+              </div>
+            </div>
+
+            <div class="form-grid-dual">
+              <div class="form-field-group">
+                <label>Valuation ($ USD)</label>
+                <input type="number" id="inputPrice" required placeholder="18500" />
+              </div>
+              <div class="form-field-group">
+                <label>Production Year</label>
+                <input type="number" id="inputYear" required placeholder="2020" />
+              </div>
+            </div>
+
+            <div class="form-grid-dual">
+              <div class="form-field-group">
+                <label>Fuel Specification</label>
+                <select id="inputFuel">
+                  <option value="Diesel">Diesel</option>
+                  <option value="Petrol">Petrol</option>
+                  <option value="Hybrid">Hybrid</option>
+                </select>
+              </div>
+              <div class="form-field-group">
+                <label>Transmission Class</label>
+                <select id="inputTrans">
+                  <option value="Automatic">Automatic</option>
+                  <option value="Manual">Manual</option>
+                </select>
+              </div>
+            </div>
+
+            <div class="form-grid-dual">
+              <div class="form-field-group">
+                <label>Exterior Colour</label>
+                <input type="text" id="inputColour" placeholder="e.g. Super White" />
+              </div>
+              <div class="form-field-group">
+                <label>Registered Mileage</label>
+                <input type="text" id="inputMileage" placeholder="e.g. 42,000 km" />
+              </div>
+            </div>
+
+            <div class="form-grid-dual">
+              <div class="form-field-group">
+                <label>Engine Displacement</label>
+                <input type="text" id="inputEngine" placeholder="e.g. 2,800 cc" />
+              </div>
+              <div class="form-field-group">
+                <label>Drive Configuration</label>
+                <select id="inputDrive">
+                  <option value="4WD / 4x4">4WD / 4x4</option>
+                  <option value="2WD / 4x2">2WD / 4x2</option>
+                  <option value="AWD">AWD</option>
+                </select>
+              </div>
+            </div>
+
+            <button type="submit" class="btn-primary">Commit Listing Record</button>
+            <button type="button" class="btn-secondary-outline" id="deleteRecordBtn" style="display:none" onclick="deleteVehicleRecord()">Purge Listing Record</button>
+          </form>
+        </div>
       </div>
-    </nav>
+    </div>
+
+    <!-- VEHICLE DETAIL INSPECTION MODAL -->
+    <div class="modal-backdrop" id="detailModalBackdrop">
+      <div class="modal-frame" style="max-width: 780px;">
+        <div class="modal-header-bar">
+          <h3 id="detailHeaderTitleText">Specification Dossier</h3>
+          <button class="modal-close-btn" onclick="closeDetailModal()">✕</button>
+        </div>
+        <div class="modal-body-content">
+          <div class="detail-layout-grid">
+            <div class="detail-media-preview" id="detailMediaWrap"></div>
+            <div>
+              <h2 id="detailRecordName" style="font-size: 1.05rem; font-weight: 800; color: var(--navy); margin-bottom: 4px;"></h2>
+              <div id="detailRecordPrice" style="font-size: 1.25rem; font-weight: 900; color: var(--crimson); margin-bottom: 12px;"></div>
+              <div class="specs-grid-box" id="detailSpecsGridBox"></div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
 
     <script>
-      // Initial mock dataset if local storage is empty
-      const defaultCars = [
+      const defaultInventoryData = [
         {
-          id: '1',
-          name: 'Toyota Hilux Revo 2.8',
+          id: '101',
+          name: 'Toyota Hilux Revo 2.8 GD-6 Double Cab',
           brand: 'Toyota',
+          model: 'Hilux Revo',
           price: 18500,
           year: 2020,
+          fuel: 'Diesel',
           transmission: 'Automatic',
-          images: ['https://images.unsplash.com/photo-1533473359331-0135ef1b58bf?w=500&auto=format&fit=crop&q=60']
+          colour: 'Super White',
+          mileage: '42,000 km',
+          engineSize: '2,800 cc',
+          driveType: '4WD / 4x4',
+          images: ['https://images.unsplash.com/photo-1533473359331-0135ef1b58bf?w=600&auto=format&fit=crop&q=80']
         },
         {
-          id: '2',
-          name: 'Isuzu D-Max BluePower',
+          id: '102',
+          name: 'Isuzu D-Max 3.0 BluePower Double Cab',
           brand: 'Isuzu',
+          model: 'D-Max',
           price: 14200,
           year: 2019,
+          fuel: 'Diesel',
           transmission: 'Manual',
-          images: ['https://images.unsplash.com/photo-1552519507-da3b142c6e3d?w=500&auto=format&fit=crop&q=60']
+          colour: 'Metallic Gray',
+          mileage: '68,000 km',
+          engineSize: '3,000 cc',
+          driveType: '4WD / 4x4',
+          images: ['https://images.unsplash.com/photo-1552519507-da3b142c6e3d?w=600&auto=format&fit=crop&q=80']
         }
       ];
 
-      let currentImages = [];
+      let workingImageList = [];
 
-      // Initialize storage
-      function getStoredCars() {
-        const data = localStorage.getItem('asia_cars_data');
-        return data ? JSON.parse(data) : defaultCars;
+      function fetchEnterpriseStock() {
+        const stored = localStorage.getItem('asiacars_enterprise_db');
+        return stored ? JSON.parse(stored) : defaultInventoryData;
       }
 
-      function setStoredCars(cars) {
-        localStorage.setItem('asia_cars_data', JSON.stringify(cars));
+      function commitEnterpriseStock(data) {
+        localStorage.setItem('asiacars_enterprise_db', JSON.stringify(data));
       }
 
-      // App Startup
       document.addEventListener('DOMContentLoaded', () => {
-        if (!localStorage.getItem('asia_cars_data')) {
-          setStoredCars(defaultCars);
+        if (!localStorage.getItem('asiacars_enterprise_db')) {
+          commitEnterpriseStock(defaultInventoryData);
         }
-        renderDashboardCars();
+        executeSearchQuery();
       });
 
-      // Filter and render dashboard
-      function applyFilters() {
-        const selectedBrand = document.getElementById('searchMake').value;
-        const selectedPrice = document.getElementById('searchPrice').value;
-        const selectedYear = document.getElementById('searchYear').value;
+      function executeSearchQuery() {
+        const selectedMake = document.getElementById('filterMake').value;
+        const priceBracket = document.getElementById('filterPrice').value;
+        const minYearVal = document.getElementById('filterYear').value;
+        const transType = document.getElementById('filterTrans').value;
 
-        let cars = getStoredCars();
+        let inventory = fetchEnterpriseStock();
 
-        cars = cars.filter(car => {
-          let matchBrand = !selectedBrand || car.brand === selectedBrand;
-          let matchYear = !selectedYear || car.year >= parseInt(selectedYear);
+        inventory = inventory.filter(item => {
+          let matchMake = !selectedMake || item.brand === selectedMake;
+          let matchYear = !minYearVal || item.year >= parseInt(minYearVal);
+          let matchTrans = !transType || item.transmission === transType;
           let matchPrice = true;
 
-          if (selectedPrice) {
-            const [min, max] = selectedPrice.split('-').map(Number);
-            matchPrice = car.price >= min && car.price <= max;
+          if (priceBracket) {
+            const [minP, maxP] = priceBracket.split('-').map(Number);
+            matchPrice = item.price >= minP && item.price <= maxP;
           }
 
-          return matchBrand && matchYear && matchPrice;
+          return matchMake && matchYear && matchTrans && matchPrice;
         });
 
-        renderCarsList(cars);
+        renderCatalogInventory(inventory);
       }
 
-      function selectChip(brand, btn) {
-        document.querySelectorAll('.brand-chip').forEach(c => c.classList.remove('active'));
-        btn.classList.add('active');
-        document.getElementById('searchMake').value = brand;
-        applyFilters();
+      function applySidebarFilter(brandName, elementNode) {
+        document.querySelectorAll('.sidebar-item').forEach(el => el.classList.remove('active'));
+        elementNode.classList.add('active');
+        document.getElementById('filterMake').value = brandName;
+        executeSearchQuery();
       }
 
-      function renderDashboardCars() {
-        applyFilters();
-      }
+      function renderCatalogInventory(records) {
+        const gridContainer = document.getElementById('inventoryGridContainer');
+        const countLabel = document.getElementById('inventoryCountLabel');
+        gridContainer.innerHTML = '';
+        countLabel.innerText = `${records.length} units recorded`;
 
-      function renderCarsList(cars) {
-        const container = document.getElementById('carsContainer');
-        container.innerHTML = '';
-
-        if (cars.length === 0) {
-          container.innerHTML = `<div class="cars-empty">No vehicles found matching your criteria.</div>`;
+        if (records.length === 0) {
+          gridContainer.innerHTML = `<div class="empty-notice">No matching vehicles identified within the active inventory parameters.</div>`;
           return;
         }
 
-        cars.forEach(car => {
-          const coverImg = car.images && car.images.length > 0 
-            ? car.images[0] 
-            : 'https://via.placeholder.com/300x200?text=No+Image';
-
+        records.forEach(item => {
+          const coverImage = item.images && item.images.length > 0 ? item.images[0] : 'https://via.placeholder.com/400x300?text=Registry+Image+Pending';
           const card = document.createElement('div');
-          card.className = 'car-card';
-          card.onclick = () => openDetail(car.id);
+          card.className = 'inventory-card';
+          card.onclick = () => openDetailModal(item.id);
           card.innerHTML = `
-            <div class="car-card-img">
-              <img src="${coverImg}" alt="${car.name}">
+            <div class="card-media">
+              <span class="card-tag">Verified Stock</span>
+              <img src="${coverImage}" alt="${item.name}">
             </div>
-            <div class="car-card-body">
-              <div class="car-card-name">${car.name}</div>
-              <div class="car-card-meta">${car.year} • ${car.transmission}</div>
-              <div class="car-card-price">$${Number(car.price).toLocaleString()}</div>
+            <div class="card-content">
+              <div class="card-title">${item.name}</div>
+              <div class="card-specs">${item.year} | ${item.transmission} | ${item.fuel}</div>
+              <div class="card-pricing">
+                <span class="card-price">$${Number(item.price).toLocaleString()}</span>
+                <span class="card-meta-text">${item.engineSize || ''}</span>
+              </div>
             </div>
           `;
-          container.appendChild(card);
+          gridContainer.appendChild(card);
         });
       }
 
-      /* ── ADMIN / MANAGE LISTINGS LOGIC ── */
+      /* Authentication & Administration Sequence */
+      function triggerAdminAccess() {
+        document.getElementById('adminPasswordInput').value = '';
+        document.getElementById('authModalBackdrop').classList.add('open');
+        document.getElementById('adminPasswordInput').focus();
+      }
+
+      function closeAuthModal() {
+        document.getElementById('authModalBackdrop').classList.remove('open');
+      }
+
+      function handleAuthKeypress(e) {
+        if (e.key === 'Enter') {
+          verifyAdminPassword();
+        }
+      }
+
+      function verifyAdminPassword() {
+        const passwordValue = document.getElementById('adminPasswordInput').value;
+        if (passwordValue === "admin123" || passwordValue === "1234") {
+          closeAuthModal();
+          openAdminPanel();
+        } else {
+          alert("Authentication failed. Invalid authorization key provided.");
+        }
+      }
+
       function openAdminPanel() {
-        document.getElementById('adminPanelOverlay').classList.add('open');
-        renderAdminList();
+        document.getElementById('adminPanelBackdrop').classList.add('open');
+        renderAdminControlTable();
       }
 
       function closeAdminPanel() {
-        document.getElementById('adminPanelOverlay').classList.remove('open');
-        renderDashboardCars();
+        document.getElementById('adminPanelBackdrop').classList.remove('open');
+        executeSearchQuery();
       }
 
-      function renderAdminList() {
-        const listContainer = document.getElementById('adminCarList');
-        const cars = getStoredCars();
-        listContainer.innerHTML = '';
+      function renderAdminControlTable() {
+        const bodyContainer = document.getElementById('adminTableRowsContainer');
+        const inventory = fetchEnterpriseStock();
+        bodyContainer.innerHTML = '';
 
-        cars.forEach(car => {
-          const coverImg = car.images && car.images.length > 0 ? car.images[0] : 'https://via.placeholder.com/100';
-          const item = document.createElement('div');
-          item.className = 'admin-list-item';
-          item.innerHTML = `
-            <img src="${coverImg}">
-            <div class="admin-list-info">
-              <div class="admin-list-name">${car.name}</div>
-              <div class="admin-list-price">$${Number(car.price).toLocaleString()}</div>
-            </div>
-            <button class="admin-list-edit-btn" onclick="openEditModal('${car.id}')">Edit</button>
+        inventory.forEach(item => {
+          const thumb = item.images && item.images.length > 0 ? item.images[0] : 'https://via.placeholder.com/50';
+          const row = document.createElement('tr');
+          row.innerHTML = `
+            <td><img src="${thumb}"></td>
+            <td><strong>${item.name}</strong></td>
+            <td>${item.brand} / ${item.model}</td>
+            <td style="color:var(--crimson); font-weight:700;">$${Number(item.price).toLocaleString()}</td>
+            <td>${item.year}</td>
+            <td><button class="table-action-btn" onclick="openCarEditorModal('${item.id}')">Modify</button></td>
           `;
-          listContainer.appendChild(item);
+          bodyContainer.appendChild(row);
         });
       }
 
-      /* ── ADD/EDIT MODAL FUNCTIONS ── */
-      function openAddModal() {
-        document.getElementById('modalTitle').innerText = 'Add New Car';
-        document.getElementById('carForm').reset();
-        document.getElementById('carId').value = '';
-        document.getElementById('deleteBtn').style.display = 'none';
-        currentImages = [];
-        renderPhotoGrid();
-        document.getElementById('carModalOverlay').classList.add('open');
-      }
-
-      function openEditModal(id) {
-        const cars = getStoredCars();
-        const car = cars.find(c => c.id === id);
-        if (!car) return;
-
-        document.getElementById('modalTitle').innerText = 'Edit Vehicle';
-        document.getElementById('carId').value = car.id;
-        document.getElementById('carName').value = car.name;
-        document.getElementById('carBrand').value = car.brand;
-        document.getElementById('carPrice').value = car.price;
-        document.getElementById('carYear').value = car.year;
-        document.getElementById('carTrans').value = car.transmission;
-        document.getElementById('deleteBtn').style.display = 'block';
-
-        currentImages = car.images ? [...car.images] : [];
-        renderPhotoGrid();
-        document.getElementById('carModalOverlay').classList.add('open');
-      }
-
-      function closeCarModal() {
-        document.getElementById('carModalOverlay').classList.remove('open');
-      }
-
-      // Convert image upload to base64 string
-      function handleImageUpload(e) {
-        const files = Array.from(e.target.files);
-        files.forEach(file => {
-          const reader = new FileReader();
-          reader.onload = (event) => {
-            currentImages.push(event.target.result);
-            renderPhotoGrid();
-          };
-          reader.readAsDataURL(file);
-        });
-      }
-
-      function removeImage(index) {
-        currentImages.splice(index, 1);
-        renderPhotoGrid();
-      }
-
-      function renderPhotoGrid() {
-        const grid = document.getElementById('photoGrid');
-        grid.querySelectorAll('.photo-thumb').forEach(el => el.remove());
-
-        currentImages.forEach((imgSrc, index) => {
-          const thumb = document.createElement('div');
-          thumb.className = 'photo-thumb';
-          thumb.innerHTML = `
-            <img src="${imgSrc}">
-            <button class="photo-thumb-del" type="button" onclick="removeImage(${index})">✕</button>
-          `;
-          grid.insertBefore(thumb, grid.lastElementChild);
-        });
-      }
-
-      function saveCar(e) {
-        e.preventDefault();
-        const id = document.getElementById('carId').value;
-        const name = document.getElementById('carName').value;
-        const brand = document.getElementById('carBrand').value;
-        const price = parseFloat(document.getElementById('carPrice').value);
-        const year = parseInt(document.getElementById('carYear').value);
-        const transmission = document.getElementById('carTrans').value;
-
-        let cars = getStoredCars();
-
+      function openCarEditorModal(id = null) {
+        const formEl = document.getElementById('vehicleFormRecord');
+        formEl.reset();
+        
         if (id) {
-          // Edit
-          cars = cars.map(car => car.id === id ? {
-            id, name, brand, price, year, transmission, images: currentImages
-          } : car);
+          const inventory = fetchEnterpriseStock();
+          const target = inventory.find(c => c.id === id);
+          if (!target) return;
+
+          document.getElementById('editorModalTitle').innerText = 'Modify Vehicle Registry Record';
+          document.getElementById('recordId').value = target.id;
+          document.getElementById('inputName').value = target.name;
+          document.getElementById('inputBrand').value = target.brand;
+          document.getElementById('inputModel').value = target.model || '';
+          document.getElementById('inputPrice').value = target.price;
+          document.getElementById('inputYear').value = target.year;
+          document.getElementById('inputFuel').value = target.fuel || 'Diesel';
+          document.getElementById('inputTrans').value = target.transmission || 'Automatic';
+          document.getElementById('inputColour').value = target.colour || '';
+          document.getElementById('inputMileage').value = target.mileage || '';
+          document.getElementById('inputEngine').value = target.engineSize || '';
+          document.getElementById('inputDrive').value = target.driveType || '4WD / 4x4';
+          document.getElementById('deleteRecordBtn').style.display = 'block';
+
+          workingImageList = target.images ? [...target.images] : [];
         } else {
-          // Add New
-          const newCar = {
-            id: Date.now().toString(),
-            name, brand, price, year, transmission,
-            images: currentImages.length ? currentImages : ['https://via.placeholder.com/300x200?text=No+Image']
-          };
-          cars.push(newCar);
+          document.getElementById('editorModalTitle').innerText = 'Register New Vehicle Listing';
+          document.getElementById('recordId').value = '';
+          document.getElementById('deleteRecordBtn').style.display = 'none';
+          workingImageList = [];
         }
 
-        setStoredCars(cars);
-        closeCarModal();
-        renderAdminList();
-        renderDashboardCars();
+        renderAssetUploadGrid();
+        document.getElementById('carEditorBackdrop').classList.add('open');
       }
 
-      function deleteCar() {
-        const id = document.getElementById('carId').value;
-        if (!id) return;
-
-        let cars = getStoredCars();
-        cars = cars.filter(c => c.id !== id);
-        setStoredCars(cars);
-
-        closeCarModal();
-        renderAdminList();
-        renderDashboardCars();
+      function closeCarEditorModal() {
+        document.getElementById('carEditorBackdrop').classList.remove('open');
       }
 
-      /* ── DETAIL OVERLAY ── */
-      function openDetail(id) {
-        const cars = getStoredCars();
-        const car = cars.find(c => c.id === id);
-        if (!car) return;
+      function processImageFiles(e) {
+        const filesArray = Array.from(e.target.files);
+        filesArray.forEach(file => {
+          const fileReader = new FileReader();
+          fileReader.onload = (ev) => {
+            workingImageList.push(ev.target.result);
+            renderAssetUploadGrid();
+          };
+          fileReader.readAsDataURL(file);
+        });
+      }
 
-        document.getElementById('detailHeaderTitle').innerText = car.name;
-        document.getElementById('detailTitle').innerText = car.name;
-        document.getElementById('detailPrice').innerText = `$${Number(car.price).toLocaleString()}`;
-        document.getElementById('detailSpecs').innerHTML = `
-          <strong>Brand:</strong> ${car.brand}<br>
-          <strong>Year:</strong> ${car.year}<br>
-          <strong>Transmission:</strong> ${car.transmission}
+      function removeAssetImage(idx) {
+        workingImageList.splice(idx, 1);
+        renderAssetUploadGrid();
+      }
+
+      function renderAssetUploadGrid() {
+        const uploadGrid = document.getElementById('uploadAssetGrid');
+        uploadGrid.querySelectorAll('.img-preview-box').forEach(el => el.remove());
+
+        workingImageList.forEach((imgSrc, index) => {
+          const previewBox = document.createElement('div');
+          previewBox.className = 'img-preview-box';
+          previewBox.innerHTML = `
+            <img src="${imgSrc}">
+            <button type="button" class="img-remove-btn" onclick="removeAssetImage(${index})">✕</button>
+          `;
+          uploadGrid.insertBefore(previewBox, uploadGrid.lastElementChild);
+        });
+      }
+
+      function commitVehicleRecord(e) {
+        e.preventDefault();
+        const recordId = document.getElementById('recordId').value;
+        const recordData = {
+          id: recordId ? recordId : Date.now().toString(),
+          name: document.getElementById('inputName').value,
+          brand: document.getElementById('inputBrand').value,
+          model: document.getElementById('inputModel').value,
+          price: parseFloat(document.getElementById('inputPrice').value),
+          year: parseInt(document.getElementById('inputYear').value),
+          fuel: document.getElementById('inputFuel').value,
+          transmission: document.getElementById('inputTrans').value,
+          colour: document.getElementById('inputColour').value,
+          mileage: document.getElementById('inputMileage').value,
+          engineSize: document.getElementById('inputEngine').value,
+          driveType: document.getElementById('inputDrive').value,
+          images: workingImageList.length ? workingImageList : ['https://via.placeholder.com/400x300?text=Registry+Image+Pending']
+        };
+
+        let inventory = fetchEnterpriseStock();
+        if (recordId) {
+          inventory = inventory.map(item => item.id === recordId ? recordData : item);
+        } else {
+          inventory.push(recordData);
+        }
+
+        commitEnterpriseStock(inventory);
+        closeCarEditorModal();
+        renderAdminControlTable();
+      }
+
+      function deleteVehicleRecord() {
+        const recordId = document.getElementById('recordId').value;
+        if (!recordId) return;
+
+        let inventory = fetchEnterpriseStock();
+        inventory = inventory.filter(item => item.id !== recordId);
+        commitEnterpriseStock(inventory);
+
+        closeCarEditorModal();
+        renderAdminControlTable();
+      }
+
+      function openDetailModal(id) {
+        const inventory = fetchEnterpriseStock();
+        const record = inventory.find(item => item.id === id);
+        if (!record) return;
+
+        document.getElementById('detailHeaderTitleText').innerText = `${record.brand} — Specification Dossier`;
+        document.getElementById('detailRecordName').innerText = record.name;
+        document.getElementById('detailRecordPrice').innerText = `$${Number(record.price).toLocaleString()}`;
+
+        const cover = record.images && record.images.length > 0 ? record.images[0] : 'https://via.placeholder.com/400';
+        document.getElementById('detailMediaWrap').innerHTML = `<img src="${cover}">`;
+
+        document.getElementById('detailSpecsGridBox').innerHTML = `
+          <div class="spec-cell"><span>Manufacturer</span><strong>${record.brand}</strong></div>
+          <div class="spec-cell"><span>Model Line</span><strong>${record.model || 'N/A'}</strong></div>
+          <div class="spec-cell"><span>Production Year</span><strong>${record.year}</strong></div>
+          <div class="spec-cell"><span>Fuel Specification</span><strong>${record.fuel || 'N/A'}</strong></div>
+          <div class="spec-cell"><span>Transmission</span><strong>${record.transmission}</strong></div>
+          <div class="spec-cell"><span>Exterior Colour</span><strong>${record.colour || 'N/A'}</strong></div>
+          <div class="spec-cell"><span>Mileage</span><strong>${record.mileage || 'N/A'}</strong></div>
+          <div class="spec-cell"><span>Engine Size</span><strong>${record.engineSize || 'N/A'}</strong></div>
+          <div class="spec-cell" style="grid-column: span 2;"><span>Drive Configuration</span><strong>${record.driveType || 'N/A'}</strong></div>
         `;
 
-        const coverImg = car.images && car.images.length > 0 ? car.images[0] : 'https://via.placeholder.com/300';
-        document.getElementById('detailImgWrap').innerHTML = `<img src="${coverImg}">`;
-
-        document.getElementById('detailOverlay').classList.add('open');
+        document.getElementById('detailModalBackdrop').classList.add('open');
       }
 
-      function closeDetail() {
-        document.getElementById('detailOverlay').classList.remove('open');
+      function closeDetailModal() {
+        document.getElementById('detailModalBackdrop').classList.remove('open');
       }
     </script>
   </body>
